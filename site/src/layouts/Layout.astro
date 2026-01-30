@@ -19,13 +19,21 @@ const {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+
 		<style>
 			/* Inspired by niels.degran.de: centered, typographic, mono-first, single accent hue */
 			:root {
 				--background-color: #ffffff;
 				--text-color: #0b1220;
 				--muted-color: #526074;
-				--accent-color: #2563eb; /* sapphire */
+				--accent-color: #42b983; /* blueish-green (mint) */
 				--max: 540px;
 				--pad: 22px;
 			}
@@ -45,8 +53,8 @@ const {
 				color: var(--text-color);
 				display: table-cell;
 				vertical-align: middle;
-				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-					"Liberation Mono", "Courier New", monospace;
+				font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+					Consolas, "Liberation Mono", "Courier New", monospace;
 				padding: var(--pad);
 			}
 
