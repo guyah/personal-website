@@ -33,7 +33,7 @@ const {
 				--background-color: #ffffff;
 				--text-color: #0b1220;
 				--muted-color: #526074;
-				--accent-color: #42b983; /* blueish-green (mint) */
+				--accent-color: #2f8ee5; /* blue-leaning teal */
 				--max: 540px;
 				--pad: 22px;
 			}
@@ -92,6 +92,12 @@ const {
 				color: var(--text-color);
 			}
 
+			/* Keep the name as “text”, but allow a subtle accent underline on hover */
+			.nav .name:hover {
+				text-decoration: underline;
+				text-decoration-color: var(--accent-color);
+			}
+
 			.nav .meta {
 				color: var(--muted-color);
 				font-size: 0.9rem;
@@ -105,9 +111,17 @@ const {
 			}
 
 			h1 {
+				color: var(--accent-color);
 				font-size: 300%;
 				font-weight: normal;
 				margin: 0 0 14px 0;
+			}
+
+			h2,
+			h3 {
+				color: var(--accent-color);
+				font-weight: normal;
+				margin: 24px 0 12px 0;
 			}
 
 			@media screen and (max-width: 480px) {
