@@ -1,0 +1,16 @@
+name: Task
+description: Execution task.
+title: "task: "
+labels: ["task"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Definition of done
+      placeholder: "e.g., PR merged, passes build, visible on staging"
