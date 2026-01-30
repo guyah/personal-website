@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+// Placeholder until we wire content collections
+const posts: Array<{ title: string; date: string; href: string; note?: string }> = [];
+---
+
+<Layout title="Blog — Guy Abi Hanna" description="Writing and notes">
+	<h1>Blog</h1>
+	<p class="small">Short, high-signal notes on AI engineering, agents, and building.</p>
+
+	{posts.length === 0 ? (
+		<p class="small">No posts yet.</p>
+	) : (
+		<ul>
+			{posts.map((p) => (
+				<li>
+					<a href={p.href}>{p.title}</a>
+					<span class="small"> — {p.date}</span>
+					{p.note ? <div class="small">{p.note}</div> : null}
+				</li>
+			))}
+		</ul>
+	)}
+</Layout>

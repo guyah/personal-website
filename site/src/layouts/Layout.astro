@@ -1,0 +1,163 @@
+---
+export type Props = {
+	title?: string;
+	description?: string;
+};
+
+const {
+	title = "Guy Abi Hanna",
+	description = "Personal website — notes on AI engineering, agents, and building.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<style>
+			:root {
+				--bg: #ffffff;
+				--fg: #111827;
+				--muted: #6b7280;
+				--border: #e5e7eb;
+				--link: #111827;
+				--link-hover: #000000;
+				--max: 740px;
+				--pad: 24px;
+				--radius: 10px;
+				--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					"Liberation Mono", "Courier New", monospace;
+				--sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+					"Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
+					"Segoe UI Emoji";
+			}
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg: #0b0f14;
+					--fg: #e5e7eb;
+					--muted: #9ca3af;
+					--border: #1f2937;
+					--link: #e5e7eb;
+					--link-hover: #ffffff;
+				}
+			}
+			html {
+				background: var(--bg);
+				color: var(--fg);
+				font-family: var(--sans);
+				text-rendering: optimizeLegibility;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			body {
+				margin: 0;
+			}
+			a {
+				color: var(--link);
+				text-decoration: none;
+				border-bottom: 1px solid var(--border);
+			}
+			a:hover {
+				color: var(--link-hover);
+				border-bottom-color: currentColor;
+			}
+			.container {
+				max-width: var(--max);
+				margin: 0 auto;
+				padding: calc(var(--pad) * 2) var(--pad);
+			}
+			.nav {
+				display: flex;
+				gap: 14px;
+				align-items: center;
+				justify-content: space-between;
+				padding-bottom: 18px;
+				border-bottom: 1px solid var(--border);
+				margin-bottom: 28px;
+			}
+			.nav a {
+				border-bottom: none;
+			}
+			.nav .left {
+				display: flex;
+				gap: 12px;
+				align-items: baseline;
+			}
+			.nav .name {
+				font-weight: 650;
+				letter-spacing: -0.01em;
+			}
+			.nav .meta {
+				color: var(--muted);
+				font-size: 0.95rem;
+			}
+			.nav .right {
+				display: flex;
+				gap: 12px;
+				align-items: center;
+				flex-wrap: wrap;
+				justify-content: flex-end;
+			}
+			.small {
+				color: var(--muted);
+				font-size: 0.95rem;
+			}
+			h1 {
+				font-size: 2rem;
+				line-height: 1.15;
+				letter-spacing: -0.02em;
+				margin: 0 0 14px 0;
+			}
+			p {
+				line-height: 1.65;
+				margin: 0 0 14px 0;
+			}
+			ul {
+				padding-left: 18px;
+				line-height: 1.65;
+			}
+			code {
+				font-family: var(--mono);
+				font-size: 0.95em;
+			}
+			.footer {
+				border-top: 1px solid var(--border);
+				margin-top: 40px;
+				padding-top: 18px;
+				color: var(--muted);
+				font-size: 0.9rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<header class="nav">
+				<div class="left">
+					<a class="name" href="/">Guy Abi Hanna</a>
+					<span class="meta">AI Engineer</span>
+				</div>
+				<nav class="right">
+					<a href="/">Home</a>
+					<a href="/about">About</a>
+					<a href="/blog">Blog</a>
+				</nav>
+			</header>
+
+			<main>
+				<slot />
+			</main>
+
+			<footer class="footer">
+				<div>© {new Date().getFullYear()} Guy Abi Hanna</div>
+				<div class="small">Built with Astro. Deployed only with explicit GO.</div>
+			</footer>
+		</div>
+	</body>
+</html>
