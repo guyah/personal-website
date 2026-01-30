@@ -1,0 +1,13 @@
+[project]
+name = "personal-website-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.115.8",
+  "uvicorn[standard]==0.30.6",
+  "SQLAlchemy==2.0.36",
+  "psycopg==3.2.3",
+]
+
+[tool.uv]
+# Keep it simple; docker is the source of truth.
