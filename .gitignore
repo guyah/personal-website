@@ -4,3 +4,7 @@ research/
 
 # OS
 .DS_Store
+# Dependencies
+site/node_modules/
+site/dist/
+
