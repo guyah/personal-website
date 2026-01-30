@@ -1,0 +1,6 @@
+# Private local research (not pushed)
+_private/
+research/
+
+# OS
+.DS_Store
