@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="450.0" y="28" text-anchor="middle" font-size="16">Batching: throughput saturates (and then bends)</text>
+<line x1="70" y1="360" x2="880" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="880" y2="55" stroke="#eee"/>
+<text x="62" y="59" text-anchor="end" font-size="11" fill="#444">2022.348</text>
+<line x1="70" y1="116" x2="880" y2="116" stroke="#eee"/>
+<text x="62" y="120" text-anchor="end" font-size="11" fill="#444">1641.657</text>
+<line x1="70" y1="177" x2="880" y2="177" stroke="#eee"/>
+<text x="62" y="181" text-anchor="end" font-size="11" fill="#444">1260.965</text>
+<line x1="70" y1="238" x2="880" y2="238" stroke="#eee"/>
+<text x="62" y="242" text-anchor="end" font-size="11" fill="#444">880.273</text>
+<line x1="70" y1="299" x2="880" y2="299" stroke="#eee"/>
+<text x="62" y="303" text-anchor="end" font-size="11" fill="#444">499.581</text>
+<line x1="70" y1="360" x2="880" y2="360" stroke="#eee"/>
+<text x="62" y="364" text-anchor="end" font-size="11" fill="#444">118.889</text>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#f3f3f3"/>
+<text x="70" y="378" text-anchor="middle" font-size="11" fill="#444">1</text>
+<line x1="232" y1="55" x2="232" y2="360" stroke="#f3f3f3"/>
+<text x="232" y="378" text-anchor="middle" font-size="11" fill="#444">26.4</text>
+<line x1="394" y1="55" x2="394" y2="360" stroke="#f3f3f3"/>
+<text x="394" y="378" text-anchor="middle" font-size="11" fill="#444">51.8</text>
+<line x1="556" y1="55" x2="556" y2="360" stroke="#f3f3f3"/>
+<text x="556" y="378" text-anchor="middle" font-size="11" fill="#444">77.2</text>
+<line x1="718" y1="55" x2="718" y2="360" stroke="#f3f3f3"/>
+<text x="718" y="378" text-anchor="middle" font-size="11" fill="#444">102.6</text>
+<line x1="880" y1="55" x2="880" y2="360" stroke="#f3f3f3"/>
+<text x="880" y="378" text-anchor="middle" font-size="11" fill="#444">128</text>
+<text x="450.0" y="400" text-anchor="middle" font-size="12" fill="#333">batch size</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">throughput (tokens/s)</text>
+<polyline points="70,360 76.378,342.403 89.134,310.412 114.646,256.897 165.669,180.948 267.717,102.853 471.811,60.086 880,55" fill="none" stroke="#2c7fb8" stroke-width="2"/>
+<line x1="80" y1="65" x2="98" y2="65" stroke="#2c7fb8" stroke-width="3"/>
+<text x="104" y="69" font-size="12" fill="#222">tokens/s (system)</text>
+</svg>
