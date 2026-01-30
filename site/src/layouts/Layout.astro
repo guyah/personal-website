@@ -19,241 +19,133 @@ const {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Space+Grotesk:wght@400;500&display=swap"
-			rel="stylesheet"
-		/>
 		<style>
+			/* Inspired by niels.degran.de: centered, typographic, mono-first, single accent hue */
 			:root {
-				--bg: #f5f2ec;
-				--fg: #1c1b19;
-				--muted: #6e645a;
-				--border: #d7cec2;
-				--link: #1c1b19;
-				--link-hover: #0d0c0b;
-				--accent: #b7a58d;
-				--max: 760px;
-				--pad: 24px;
-				--radius: 12px;
-				--serif: "Newsreader", "Times New Roman", serif;
-				--sans: "Space Grotesk", "Trebuchet MS", sans-serif;
+				--background-color: #ffffff;
+				--text-color: #0b1220;
+				--muted-color: #526074;
+				--accent-color: #2563eb; /* sapphire */
+				--max: 540px;
+				--pad: 22px;
 			}
-			* {
-				box-sizing: border-box;
-			}
+
 			html {
-				background: var(--bg);
-				color: var(--fg);
-				font-family: var(--sans);
-				text-rendering: optimizeLegibility;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
+				display: table;
 			}
+
+			html,
 			body {
-				margin: 0;
-				min-height: 100vh;
-				position: relative;
-				background: radial-gradient(1200px 500px at 10% -10%, #ede6dc 0%, transparent 65%),
-					radial-gradient(900px 500px at 110% 10%, #efe9df 0%, transparent 60%),
-					var(--bg);
+				height: 100%;
+				margin: auto;
 			}
-			body::before {
-				content: "";
-				position: fixed;
-				inset: 0;
-				background-image: linear-gradient(120deg, rgba(28, 27, 25, 0.03), rgba(28, 27, 25, 0));
-				pointer-events: none;
-				z-index: -1;
+
+			body {
+				background-color: var(--background-color);
+				color: var(--text-color);
+				display: table-cell;
+				vertical-align: middle;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					"Liberation Mono", "Courier New", monospace;
+				padding: var(--pad);
 			}
+
 			a {
-				color: var(--link);
+				color: var(--accent-color);
 				text-decoration: none;
-				border-bottom: 1px solid var(--border);
-				transition: color 0.2s ease, border-color 0.2s ease;
 			}
+
 			a:hover {
-				color: var(--link-hover);
-				border-bottom-color: currentColor;
+				color: var(--text-color);
 			}
-			.container {
+
+			.box {
+				width: 80vw;
 				max-width: var(--max);
-				margin: 0 auto;
-				padding: calc(var(--pad) * 2.1) var(--pad) calc(var(--pad) * 2.4);
+				position: relative;
 			}
+
 			.nav {
 				display: flex;
-				gap: 14px;
-				align-items: flex-start;
 				justify-content: space-between;
-				padding-bottom: 18px;
-				border-bottom: 1px solid var(--border);
-				margin-bottom: 32px;
+				align-items: baseline;
+				gap: 12px;
+				margin-bottom: 24px;
 				flex-wrap: wrap;
 			}
-			.nav a {
-				border-bottom: none;
-			}
-			.nav .left {
-				display: flex;
+
+			.nav .brand {
+				display: inline-flex;
 				flex-direction: column;
 				gap: 6px;
 			}
+
 			.nav .name {
-				font-family: var(--serif);
-				font-weight: 600;
-				letter-spacing: -0.01em;
-				font-size: 1.2rem;
+				color: var(--text-color);
 			}
+
 			.nav .meta {
-				color: var(--muted);
-				font-size: 0.95rem;
+				color: var(--muted-color);
+				font-size: 0.9rem;
 			}
-			.nav .right {
-				display: flex;
-				gap: 14px;
-				align-items: center;
+
+			.nav .links {
+				display: inline-flex;
+				gap: 12px;
 				flex-wrap: wrap;
 				justify-content: flex-end;
-				font-size: 0.95rem;
 			}
-			.small {
-				color: var(--muted);
-				font-size: 0.95rem;
-			}
-			main {
-				font-size: 1.02rem;
-			}
-			main > * {
-				animation: rise 0.6s ease both;
-			}
-			main > *:nth-child(2) {
-				animation-delay: 0.06s;
-			}
-			main > *:nth-child(3) {
-				animation-delay: 0.12s;
-			}
-			main > *:nth-child(4) {
-				animation-delay: 0.18s;
-			}
-			@keyframes rise {
-				from {
-					opacity: 0;
-					transform: translateY(8px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-			h1,
-			h2,
-			h3 {
-				font-family: var(--serif);
-				letter-spacing: -0.015em;
-				margin: 0 0 12px 0;
-			}
+
 			h1 {
-				font-size: clamp(2rem, 3vw, 2.6rem);
-				line-height: 1.1;
-			}
-			h2 {
-				font-size: 1.5rem;
-				margin-top: 28px;
-			}
-			h3 {
-				font-size: 1.15rem;
-			}
-			p {
-				line-height: 1.7;
+				font-size: 300%;
+				font-weight: normal;
 				margin: 0 0 14px 0;
 			}
-			ul,
-			ol {
-				padding-left: 18px;
-				line-height: 1.7;
+
+			@media screen and (max-width: 480px) {
+				h1 {
+					font-size: 200%;
+					word-wrap: break-word;
+				}
 			}
-			code {
-				font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
-				font-size: 0.95em;
-				background: #efe7dc;
-				padding: 2px 6px;
-				border-radius: 6px;
+
+			p {
+				line-height: 1.6;
+				margin: 0 0 12px 0;
 			}
-			pre {
-				background: #efe7dc;
-				padding: 14px;
-				border-radius: 10px;
-				overflow: auto;
-			}
-			blockquote {
-				border-left: 3px solid var(--accent);
-				margin: 18px 0;
-				padding-left: 14px;
-				color: var(--muted);
-			}
-			.section {
-				padding: 18px 18px 8px;
-				border: 1px solid var(--border);
-				border-radius: var(--radius);
-				background: #faf7f2;
-			}
-			.list {
-				display: grid;
-				gap: 18px;
-				margin-top: 20px;
-			}
-			.list-item {
-				display: grid;
-				gap: 6px;
-			}
-			.list-item .title {
-				font-family: var(--serif);
-				font-size: 1.1rem;
-				font-weight: 600;
-			}
-			.list-item .meta {
-				color: var(--muted);
+
+			.small {
+				color: var(--muted-color);
 				font-size: 0.9rem;
 			}
+
+			.blog-entry {
+				margin: 1rem 0;
+			}
+
+			.blog-date {
+				color: var(--text-color);
+				opacity: 0.6;
+				font-size: 0.9rem;
+				margin: 0;
+			}
+
 			.footer {
-				border-top: 1px solid var(--border);
-				margin-top: 48px;
-				padding-top: 18px;
-				color: var(--muted);
-				font-size: 0.9rem;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 8px 18px;
-				align-items: center;
-				justify-content: space-between;
-			}
-			.footer a {
-				border-bottom-color: transparent;
-			}
-			@media (max-width: 720px) {
-				.container {
-					padding: 36px 20px 44px;
-				}
-				.nav {
-					gap: 12px;
-				}
-				.nav .right {
-					gap: 10px;
-				}
+				margin-top: 28px;
+				color: var(--muted-color);
+				font-size: 0.85rem;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="box">
 			<header class="nav">
-				<div class="left">
+				<div class="brand">
 					<a class="name" href="/">Guy Abi Hanna</a>
-					<span class="meta">AI Engineer · Paris</span>
+					<div class="meta">AI Engineer · Paris</div>
 				</div>
-				<nav class="right">
+				<nav class="links">
 					<a href="/">Home</a>
 					<a href="/about">About</a>
 					<a href="/blog">Blog</a>
