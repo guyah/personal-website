@@ -8,8 +8,15 @@ Rules:
 - Keep CSS simple, typography-first, minimal components.
 - Current design direction: **centered mono layout** inspired by niels.degran.de.
   - Use IBM Plex Mono.
-  - Single accent hue (`--accent-color`) applied to **links + headings**.
-  - Body text stays near-black for readability; minimal borders/decoration.
+  - Single accent hue (`--accent-color`) applied consistently to:
+    - nav links
+    - all page titles (Home/About/Blog)
+    - blog post titles (in list + inside post pages)
+    - headings (h1/h2/h3)
+  - Links should feel designed (hover treatment), but **no underlines**.
+  - Blog list items should include a small leading **icon** before the post title.
+  - Tagline under name: "Senior AI Engineer · Paris".
+  - Validate by visually checking all pages before sending screenshots.
 
 Commands:
 - cd site

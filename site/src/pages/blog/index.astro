@@ -21,16 +21,31 @@ const formatter = new Intl.DateTimeFormat("en-US", {
 		<p class="small">No posts yet.</p>
 	) : (
 		<div class="list">
-			{posts.map((post) => (
-				<article class="list-item">
-					<a class="title" href={`/blog/${post.slug}`}>{post.data.title}</a>
-					<div class="meta">
-						{formatter.format(post.data.pubDate)}
-						{post.data.tags?.length ? ` · ${post.data.tags.join(" / ")}` : ""}
-					</div>
-					<p class="small">{post.data.description}</p>
-				</article>
-			))}
+			{posts.map((post) => {
+				const tags = post.data.tags ?? [];
+				const icon = tags.includes("voice")
+					? "🎙"
+					: tags.includes("systems")
+						? "🧰"
+						: tags.includes("product")
+							? "🧱"
+							: tags.includes("craft")
+								? "✍︎"
+								: "→";
+
+				return (
+					<article class="list-item">
+						<a class="title" href={`/blog/${post.slug}`}>
+							<span aria-hidden="true">{icon}</span> {post.data.title}
+						</a>
+						<div class="meta">
+							{formatter.format(post.data.pubDate)}
+							{tags.length ? ` · ${tags.join(" / ")}` : ""}
+						</div>
+						<p class="small">{post.data.description}</p>
+					</article>
+				);
+			})}
 		</div>
 	)}
 </Layout>

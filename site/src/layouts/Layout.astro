@@ -33,7 +33,7 @@ const {
 				--background-color: #ffffff;
 				--text-color: #0b1220;
 				--muted-color: #526074;
-				--accent-color: #2f8ee5; /* blue-leaning teal */
+				--accent-color: #2f8ee5; /* ocean blue */
 				--max: 540px;
 				--pad: 22px;
 			}
@@ -61,13 +61,15 @@ const {
 			a {
 				color: var(--accent-color);
 				text-decoration: none;
-				border-bottom: 1px solid rgba(47, 142, 229, 0.35);
-				transition: color 0.15s ease, border-color 0.15s ease;
+				font-weight: 500;
+				border-radius: 6px;
+				padding: 0 2px;
+				transition: color 0.15s ease, box-shadow 0.15s ease;
 			}
 
 			a:hover {
 				color: var(--text-color);
-				border-bottom-color: rgba(11, 18, 32, 0.55);
+				box-shadow: inset 0 -0.55em 0 rgba(47, 142, 229, 0.18);
 			}
 
 			.box {
@@ -93,12 +95,11 @@ const {
 
 			.nav .name {
 				color: var(--text-color);
+				font-weight: 500;
 			}
 
-			/* Keep the name as “text”, but allow a subtle accent underline on hover */
 			.nav .name:hover {
-				text-decoration: underline;
-				text-decoration-color: var(--accent-color);
+				box-shadow: inset 0 -0.55em 0 rgba(47, 142, 229, 0.18);
 			}
 
 			.nav .meta {
@@ -117,7 +118,7 @@ const {
 			h2,
 			h3 {
 				color: var(--accent-color);
-				font-weight: normal;
+				font-weight: 500;
 				letter-spacing: -0.01em;
 			}
 
@@ -148,6 +149,10 @@ const {
 				margin: 0 0 12px 0;
 			}
 
+			article > h1 {
+				color: var(--accent-color);
+			}
+
 			.small {
 				color: var(--muted-color);
 				font-size: 0.9rem;
@@ -170,6 +175,29 @@ const {
 				border-left: 2px solid rgba(47, 142, 229, 0.55);
 			}
 
+			.list {
+				margin-top: 18px;
+				display: grid;
+				gap: 18px;
+			}
+
+			.list-item {
+				display: grid;
+				gap: 6px;
+			}
+
+			.list-item .title {
+				color: var(--accent-color);
+				font-weight: 500;
+				font-size: 1.1rem;
+				width: fit-content;
+			}
+
+			.list-item .meta {
+				color: var(--muted-color);
+				font-size: 0.9rem;
+			}
+
 			ul,
 			ol {
 				padding-left: 18px;
@@ -189,7 +217,7 @@ const {
 			<header class="nav">
 				<div class="brand">
 					<a class="name" href="/">Guy Abi Hanna</a>
-					<div class="meta">AI Engineer · Paris</div>
+					<div class="meta">Senior AI Engineer · Paris</div>
 				</div>
 				<nav class="links">
 					<a href="/">Home</a>
