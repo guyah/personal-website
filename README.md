@@ -1,15 +1,32 @@
 # personal-website
 
-Private repo for Guy’s personal website.
+Minimal personal site + backend scaffold.
 
-## Goals (v1)
-- Minimal, fast, content-first site (inspired by niels.degran.de + steipete.me)
+## Structure
+- `site/` — Astro frontend
+- `backend/` — FastAPI service (Docker only)
+- `docker-compose.yml` — Postgres + backend + optional site dev service
+
+## Frontend (Astro)
+```bash
+cd site
+npm install
+npm run dev
+```
+
+The RSS feed uses `site/astro.config.mjs -> site`. Update it to your production domain when ready.
+
+## Backend + DB (Docker only)
+```bash
+docker compose up --build
+```
+
+Services:
+- Postgres: `localhost:5432`
+- Backend health: `http://localhost:8000/health`
+- Site dev server (optional): `http://localhost:4321`
+
+## Goals
+- Minimal, fast, content-first site
 - Blog + RSS
-- Deployed only with explicit Guy “GO” (critical action)
-
-## Structure (planned)
-- /site  (frontend)
-- /infra (IaC) — optional
-
-## Project tracking
-We use a GitHub Project board (Kanban): Inbox / Next / Doing / Blocked / Done.
+- Deployed only with explicit Guy “GO”

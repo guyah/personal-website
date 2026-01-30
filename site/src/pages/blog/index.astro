@@ -1,8 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-// Placeholder until we wire content collections
-const posts: Array<{ title: string; date: string; href: string; note?: string }> = [];
+const posts = (await getCollection("blog"))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+	year: "numeric",
+	month: "short",
+	day: "numeric",
+});
 ---
 
 <Layout title="Blog — Guy Abi Hanna" description="Writing and notes">
@@ -12,14 +20,17 @@ const posts: Array<{ title: string; date: string; href: string; note?: string }>
 	{posts.length === 0 ? (
 		<p class="small">No posts yet.</p>
 	) : (
-		<ul>
-			{posts.map((p) => (
-				<li>
-					<a href={p.href}>{p.title}</a>
-					<span class="small"> — {p.date}</span>
-					{p.note ? <div class="small">{p.note}</div> : null}
-				</li>
+		<div class="list">
+			{posts.map((post) => (
+				<article class="list-item">
+					<a class="title" href={`/blog/${post.slug}`}>{post.data.title}</a>
+					<div class="meta">
+						{formatter.format(post.data.pubDate)}
+						{post.data.tags?.length ? ` · ${post.data.tags.join(" / ")}` : ""}
+					</div>
+					<p class="small">{post.data.description}</p>
+				</article>
 			))}
-		</ul>
+		</div>
 	)}
 </Layout>
