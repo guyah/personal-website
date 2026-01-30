@@ -3,6 +3,7 @@ title: Notes on small systems
 description: Building the smallest thing that still feels complete.
 pubDate: 2025-10-03
 tags: [product, craft]
+icon: "🧱"
 ---
 
 Small systems are easier to keep honest. You can see everything, and you can move faster.

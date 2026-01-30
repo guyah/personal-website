@@ -3,6 +3,7 @@ title: Designing fast voice agents
 description: What matters most when latency, turn-taking, and reliability meet real users.
 pubDate: 2025-11-12
 tags: [voice, systems]
+icon: "🎙"
 ---
 
 Fast voice agents live or die by the gaps between words. When the pauses feel human, users relax and keep talking. When they feel brittle, every interruption becomes a drop.
