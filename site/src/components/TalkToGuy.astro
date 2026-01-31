@@ -1,0 +1,228 @@
+---
+// Client-side only UI (vanilla JS in an Astro component)
+---
+
+<div class="talk">
+	<button id="talk-open" class="btn">Talk to Guy</button>
+
+	<dialog id="talk-modal" class="talk-modal">
+		<div class="talk-modal__inner">
+			<div class="talk-modal__header">
+				<h2 class="talk-modal__title">Talk to Guy</h2>
+				<button id="talk-close" class="talk-modal__close" aria-label="Close">×</button>
+			</div>
+
+			<p class="small" id="talk-status">Press Start, speak, then Stop.</p>
+
+			<div class="talk-modal__controls">
+				<button id="talk-start" class="btn">Start</button>
+				<button id="talk-stop" class="btn" disabled>Stop</button>
+			</div>
+
+			<div class="talk-modal__transcript">
+				<p class="small">Transcript</p>
+				<pre id="talk-transcript" class="mono"></pre>
+				<p class="small">Reply</p>
+				<pre id="talk-reply" class="mono"></pre>
+			</div>
+
+			<audio id="talk-audio" controls class="talk-modal__audio"></audio>
+
+			<p class="small">
+				Local dev only: requires <code>OPENAI_API_KEY</code> for the backend.
+			</p>
+		</div>
+	</dialog>
+</div>
+
+<style>
+	.talk { margin-top: 1.5rem; }
+	.btn {
+		border: 1px solid rgba(255,255,255,0.18);
+		background: rgba(255,255,255,0.06);
+		padding: 0.55rem 0.85rem;
+		border-radius: 0.6rem;
+		cursor: pointer;
+	}
+	.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+	.talk-modal { border: none; padding: 0; background: transparent; }
+	.talk-modal::backdrop { background: rgba(0,0,0,0.55); }
+	.talk-modal__inner {
+		background: rgba(10, 12, 12, 0.98);
+		border: 1px solid rgba(255,255,255,0.14);
+		border-radius: 1rem;
+		padding: 1rem;
+		width: min(720px, calc(100vw - 2rem));
+	}
+	.talk-modal__header { display:flex; align-items:center; justify-content:space-between; gap: 1rem; }
+	.talk-modal__title { margin: 0; font-size: 1.1rem; }
+	.talk-modal__close { background: transparent; border: none; color: inherit; font-size: 1.5rem; cursor: pointer; }
+	.talk-modal__controls { display:flex; gap: 0.75rem; margin: 0.75rem 0 1rem; }
+	.talk-modal__transcript pre { white-space: pre-wrap; margin: 0.25rem 0 0.75rem; }
+	.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+	.talk-modal__audio { width: 100%; margin-top: 0.5rem; }
+</style>
+
+<script>
+	const $ = (id) => document.getElementById(id);
+
+	const modal = $("talk-modal");
+	const openBtn = $("talk-open");
+	const closeBtn = $("talk-close");
+	const startBtn = $("talk-start");
+	const stopBtn = $("talk-stop");
+	const statusEl = $("talk-status");
+	const transcriptEl = $("talk-transcript");
+	const replyEl = $("talk-reply");
+	const audioEl = $("talk-audio");
+
+	let ws;
+	let audioCtx;
+	let source;
+	let processor;
+	let stream;
+
+	const TARGET_SAMPLE_RATE = 16000;
+
+	function setStatus(s) { statusEl.textContent = s; }
+
+	function encodeBase64(bytes) {
+		let bin = "";
+		const chunk = 0x8000;
+		for (let i = 0; i < bytes.length; i += chunk) {
+			bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+		}
+		return btoa(bin);
+	}
+
+	function downsampleBuffer(buffer, inputSampleRate, outputSampleRate) {
+		if (outputSampleRate === inputSampleRate) return buffer;
+		const ratio = inputSampleRate / outputSampleRate;
+		const newLength = Math.round(buffer.length / ratio);
+		const result = new Float32Array(newLength);
+		let offsetResult = 0;
+		let offsetBuffer = 0;
+		while (offsetResult < result.length) {
+			const nextOffsetBuffer = Math.round((offsetResult + 1) * ratio);
+			let accum = 0, count = 0;
+			for (let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+				accum += buffer[i];
+				count++;
+			}
+			result[offsetResult] = accum / count;
+			offsetResult++;
+			offsetBuffer = nextOffsetBuffer;
+		}
+		return result;
+	}
+
+	function floatTo16BitPCM(float32) {
+		const output = new Int16Array(float32.length);
+		for (let i = 0; i < float32.length; i++) {
+			let s = Math.max(-1, Math.min(1, float32[i]));
+			output[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+		}
+		return new Uint8Array(output.buffer);
+	}
+
+	function wsUrl() {
+		const proto = location.protocol === "https:" ? "wss" : "ws";
+		return `${proto}://${location.hostname}:8000/ws/talk`;
+	}
+
+	async function ensureWs() {
+		if (ws && ws.readyState === WebSocket.OPEN) return;
+		ws = new WebSocket(wsUrl());
+		ws.onmessage = (ev) => {
+			try {
+				const msg = JSON.parse(ev.data);
+				if (msg.type === "status") setStatus(msg.message);
+				if (msg.type === "transcript") transcriptEl.textContent = msg.text || "";
+				if (msg.type === "reply") replyEl.textContent = msg.text || "";
+				if (msg.type === "audio") {
+					const bytes = Uint8Array.from(atob(msg.data), c => c.charCodeAt(0));
+					const blob = new Blob([bytes], { type: msg.mime || "audio/wav" });
+					const url = URL.createObjectURL(blob);
+					audioEl.src = url;
+					audioEl.play().catch(() => {});
+				}
+			} catch (e) {
+				// ignore
+			}
+		};
+		await new Promise((resolve, reject) => {
+			ws.onopen = resolve;
+			ws.onerror = reject;
+		});
+	}
+
+	async function startRecording() {
+		transcriptEl.textContent = "";
+		replyEl.textContent = "";
+		audioEl.removeAttribute("src");
+
+		await ensureWs();
+		ws.send(JSON.stringify({ type: "start", sample_rate_hz: TARGET_SAMPLE_RATE }));
+
+		stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+		audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+		source = audioCtx.createMediaStreamSource(stream);
+		processor = audioCtx.createScriptProcessor(4096, 1, 1);
+
+		processor.onaudioprocess = (e) => {
+			if (!ws || ws.readyState !== WebSocket.OPEN) return;
+			const input = e.inputBuffer.getChannelData(0);
+			const down = downsampleBuffer(input, audioCtx.sampleRate, TARGET_SAMPLE_RATE);
+			const pcmBytes = floatTo16BitPCM(down);
+			ws.send(JSON.stringify({ type: "audio_chunk", data: encodeBase64(pcmBytes) }));
+		};
+
+		source.connect(processor);
+		processor.connect(audioCtx.destination);
+	}
+
+	async function stopRecording() {
+		try { processor && processor.disconnect(); } catch {}
+		try { source && source.disconnect(); } catch {}
+		try { audioCtx && audioCtx.close(); } catch {}
+		if (stream) stream.getTracks().forEach(t => t.stop());
+		stream = null;
+		processor = null;
+		source = null;
+		audioCtx = null;
+
+		if (ws && ws.readyState === WebSocket.OPEN) {
+			ws.send(JSON.stringify({ type: "end" }));
+		}
+	}
+
+	openBtn?.addEventListener("click", () => {
+		modal.showModal();
+		setStatus("Press Start, speak, then Stop.");
+	});
+
+	closeBtn?.addEventListener("click", () => {
+		modal.close();
+	});
+
+	startBtn?.addEventListener("click", async () => {
+		startBtn.disabled = true;
+		stopBtn.disabled = false;
+		setStatus("requesting mic…");
+		try {
+			await startRecording();
+			setStatus("recording…");
+		} catch (e) {
+			setStatus("mic error — check permissions");
+			startBtn.disabled = false;
+			stopBtn.disabled = true;
+		}
+	});
+
+	stopBtn?.addEventListener("click", async () => {
+		stopBtn.disabled = true;
+		setStatus("stopping…");
+		await stopRecording();
+		startBtn.disabled = false;
+	});
+</script>
