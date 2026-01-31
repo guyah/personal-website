@@ -6,6 +6,19 @@ Rules:
 - Prefer Astro pages + content collections.
 - Avoid heavy client JS; default to server/static rendering.
 - Keep CSS simple, typography-first, minimal components.
+- Current design direction: **centered mono layout** inspired by niels.degran.de.
+  - Use IBM Plex Mono.
+  - Single accent hue (`--accent-color`) applied consistently to:
+    - nav links
+    - all page titles (Home/About/Blog)
+    - blog post titles (in list + inside post pages)
+    - headings (h1/h2/h3)
+  - Links should feel designed (hover treatment), but **no underlines**.
+  - Blog list items should include a small leading **icon** before the post title.
+    - Prefer setting `icon:` in post frontmatter (not auto-guessing from tags).
+  - Tagline under name: "Senior AI Engineer · Paris".
+  - IMPORTANT: Layout CSS must apply to slotted page content; prefer `style is:global` (Astro style scoping can otherwise leave page `<h1>` titles black).
+  - Validate by visually checking all pages before sending screenshots.
 
 Commands:
 - cd site

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="450.0" y="28" text-anchor="middle" font-size="16">RAG retrieval: precision@k vs recall@k (synthetic)</text>
+<line x1="70" y1="360" x2="880" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="880" y2="55" stroke="#eee"/>
+<text x="62" y="59" text-anchor="end" font-size="11" fill="#444">0.566</text>
+<line x1="70" y1="116" x2="880" y2="116" stroke="#eee"/>
+<text x="62" y="120" text-anchor="end" font-size="11" fill="#444">0.473</text>
+<line x1="70" y1="177" x2="880" y2="177" stroke="#eee"/>
+<text x="62" y="181" text-anchor="end" font-size="11" fill="#444">0.379</text>
+<line x1="70" y1="238" x2="880" y2="238" stroke="#eee"/>
+<text x="62" y="242" text-anchor="end" font-size="11" fill="#444">0.286</text>
+<line x1="70" y1="299" x2="880" y2="299" stroke="#eee"/>
+<text x="62" y="303" text-anchor="end" font-size="11" fill="#444">0.192</text>
+<line x1="70" y1="360" x2="880" y2="360" stroke="#eee"/>
+<text x="62" y="364" text-anchor="end" font-size="11" fill="#444">0.099</text>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#f3f3f3"/>
+<text x="70" y="378" text-anchor="middle" font-size="11" fill="#444">1</text>
+<line x1="232" y1="55" x2="232" y2="360" stroke="#f3f3f3"/>
+<text x="232" y="378" text-anchor="middle" font-size="11" fill="#444">2.8</text>
+<line x1="394" y1="55" x2="394" y2="360" stroke="#f3f3f3"/>
+<text x="394" y="378" text-anchor="middle" font-size="11" fill="#444">4.6</text>
+<line x1="556" y1="55" x2="556" y2="360" stroke="#f3f3f3"/>
+<text x="556" y="378" text-anchor="middle" font-size="11" fill="#444">6.4</text>
+<line x1="718" y1="55" x2="718" y2="360" stroke="#f3f3f3"/>
+<text x="718" y="378" text-anchor="middle" font-size="11" fill="#444">8.2</text>
+<line x1="880" y1="55" x2="880" y2="360" stroke="#f3f3f3"/>
+<text x="880" y="378" text-anchor="middle" font-size="11" fill="#444">10</text>
+<text x="450.0" y="400" text-anchor="middle" font-size="12" fill="#333">k</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">metric</text>
+<polyline points="70,286.075 160,292.594 250,289.552 340,301.721 430,305.893 520,305.197 610,309.916 700,308.24 790,324.32 880,322.06" fill="none" stroke="#2c7fb8" stroke-width="2"/>
+<polyline points="70,360 160,312.803 250,248.309 340,225.101 430,160.39 520,157.565 610,130.881 700,101.763 790,88.507 880,55" fill="none" stroke="#d7301f" stroke-width="2"/>
+<line x1="80" y1="65" x2="98" y2="65" stroke="#2c7fb8" stroke-width="3"/>
+<text x="104" y="69" font-size="12" fill="#222">precision@k</text>
+<line x1="80" y1="83" x2="98" y2="83" stroke="#d7301f" stroke-width="3"/>
+<text x="104" y="87" font-size="12" fill="#222">recall@k</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="520" viewBox="0 0 700 520">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="350.0" y="28" text-anchor="middle" font-size="16">VAD threshold trade-off (synthetic ROC)</text>
+<line x1="70" y1="460" x2="680" y2="460" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="460" stroke="#333"/>
+<line x1="70" y1="55" x2="680" y2="55" stroke="#eee"/>
+<text x="62" y="59" text-anchor="end" font-size="11" fill="#444">1</text>
+<line x1="70" y1="136" x2="680" y2="136" stroke="#eee"/>
+<text x="62" y="140" text-anchor="end" font-size="11" fill="#444">0.808</text>
+<line x1="70" y1="217" x2="680" y2="217" stroke="#eee"/>
+<text x="62" y="221" text-anchor="end" font-size="11" fill="#444">0.616</text>
+<line x1="70" y1="298" x2="680" y2="298" stroke="#eee"/>
+<text x="62" y="302" text-anchor="end" font-size="11" fill="#444">0.424</text>
+<line x1="70" y1="379" x2="680" y2="379" stroke="#eee"/>
+<text x="62" y="383" text-anchor="end" font-size="11" fill="#444">0.232</text>
+<line x1="70" y1="460" x2="680" y2="460" stroke="#eee"/>
+<text x="62" y="464" text-anchor="end" font-size="11" fill="#444">0.041</text>
+<line x1="70" y1="55" x2="70" y2="460" stroke="#f3f3f3"/>
+<text x="70" y="478" text-anchor="middle" font-size="11" fill="#444">0</text>
+<line x1="192" y1="55" x2="192" y2="460" stroke="#f3f3f3"/>
+<text x="192" y="478" text-anchor="middle" font-size="11" fill="#444">0.171</text>
+<line x1="314" y1="55" x2="314" y2="460" stroke="#f3f3f3"/>
+<text x="314" y="478" text-anchor="middle" font-size="11" fill="#444">0.342</text>
+<line x1="436" y1="55" x2="436" y2="460" stroke="#f3f3f3"/>
+<text x="436" y="478" text-anchor="middle" font-size="11" fill="#444">0.512</text>
+<line x1="558" y1="55" x2="558" y2="460" stroke="#f3f3f3"/>
+<text x="558" y="478" text-anchor="middle" font-size="11" fill="#444">0.683</text>
+<line x1="680" y1="55" x2="680" y2="460" stroke="#f3f3f3"/>
+<text x="680" y="478" text-anchor="middle" font-size="11" fill="#444">0.854</text>
+<text x="350.0" y="500" text-anchor="middle" font-size="12" fill="#333">false positive rate</text>
+<text x="18" y="260.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 260.0)">true positive rate</text>
+<polyline points="680,55 638.276,55 589.122,55 541.968,55.084 492.385,55.084 450.518,55.084 408.508,55.084 371.642,55.084 334.919,55.253 299.911,55.338 267.761,55.507 242.469,55.675 218.463,56.013 195.744,56.182 177.311,56.857 160.021,57.448 148.733,58.208 134.729,59.39 124.87,61.332 115.011,63.105 106.008,65.807 98.292,68.171 94.291,71.295 88.862,75.938 85.432,81.088 82.574,86.829 79.288,93.33 77.43,98.227 75.859,106.754 74.43,115.366 73.144,125.075 72,136.895 71,147.195 71,161.379 70.714,176.492 70.429,191.435 70.286,208.068 70.286,224.869 70.143,244.625 70.143,264.043 70.143,285.403 70.143,305.75 70,329.306 70,350.413 70,371.435 70,392.458 70,410.188 70,428.931 70,446.238 70,460" fill="none" stroke="#41b6c4" stroke-width="2"/>
+<line x1="80" y1="65" x2="98" y2="65" stroke="#41b6c4" stroke-width="3"/>
+<text x="104" y="69" font-size="12" fill="#222">ROC</text>
+</svg>
