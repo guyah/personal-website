@@ -1,0 +1,27 @@
+---
+const { items = [] } = Astro.props;
+---
+
+{items?.length ? (
+	<div class="tldr">
+		<p class="small tldr__label">TL;DR</p>
+		<ul>
+			{items.map((x) => (
+				<li>{x}</li>
+			))}
+		</ul>
+	</div>
+) : null}
+
+<style>
+	.tldr {
+		margin: 1.25rem 0 1.5rem;
+		padding: 0.9rem 1rem;
+		border-left: 3px solid rgba(120, 220, 255, 0.55);
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 0.6rem;
+	}
+	.tldr__label { margin: 0 0 0.35rem; opacity: 0.9; font-weight: 700; }
+	.tldr ul { margin: 0; padding-left: 1.1rem; }
+	.tldr li { margin: 0.25rem 0; }
+</style>

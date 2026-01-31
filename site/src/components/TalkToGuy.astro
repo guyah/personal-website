@@ -37,6 +37,8 @@
 
 <style>
 	.talk { margin-top: 1.5rem; }
+	/* Make it visually obvious */
+	.talk .btn { font-weight: 700; }
 	.btn {
 		border: 1px solid rgba(255,255,255,0.18);
 		background: rgba(255,255,255,0.06);
@@ -127,7 +129,9 @@
 
 	function wsUrl() {
 		const proto = location.protocol === "https:" ? "wss" : "ws";
-		return `${proto}://${location.hostname}:8000/ws/talk`;
+		// When opened via file://, hostname is empty; default to localhost.
+		const host = location.hostname || "localhost";
+		return `${proto}://${host}:8000/ws/talk`;
 	}
 
 	async function ensureWs() {
@@ -198,7 +202,11 @@
 
 	openBtn?.addEventListener("click", () => {
 		modal.showModal();
-		setStatus("Press Start, speak, then Stop.");
+		if (location.protocol === "file:") {
+			setStatus("This UI requires a local server (file:// breaks WebSocket + asset paths). Run: npm run preview");
+		} else {
+			setStatus("Press Start, speak, then Stop.");
+		}
 	});
 
 	closeBtn?.addEventListener("click", () => {
@@ -206,6 +214,10 @@
 	});
 
 	startBtn?.addEventListener("click", async () => {
+		if (location.protocol === "file:") {
+			setStatus("Run this page via a local server (npm run preview). file:// mode can’t connect to ws://localhost:8000");
+			return;
+		}
 		startBtn.disabled = true;
 		stopBtn.disabled = false;
 		setStatus("requesting mic…");
@@ -213,7 +225,7 @@
 			await startRecording();
 			setStatus("recording…");
 		} catch (e) {
-			setStatus("mic error — check permissions");
+			setStatus("mic/WS error — check permissions + backend on :8000");
 			startBtn.disabled = false;
 			stopBtn.disabled = true;
 		}

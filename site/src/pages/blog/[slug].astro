@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getEntryBySlug("blog", slug!);
 if (!post || post.data.draft) {
-	throw new Error("Post not found");
+	return Astro.redirect("/blog");
 }
 
 const { Content } = await post.render();
