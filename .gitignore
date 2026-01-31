@@ -8,3 +8,14 @@ research/
 site/node_modules/
 site/dist/
 
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+*.wav
+.venv/
+.venv*/
+venv/
+backend/.venv_smoke/
+backend/app/__pycache__/
+backend/talk_reply.wav
