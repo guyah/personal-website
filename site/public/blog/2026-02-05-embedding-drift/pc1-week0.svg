@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="450.0" y="28" text-anchor="middle" font-size="16">Week 0: PC1 distribution (baseline)</text>
+<line x1="70" y1="360" x2="880" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
+<rect x="70" y="356.919" width="27.929" height="3.081" fill="#41b6c4" opacity="0.9"/>
+<rect x="98.929" y="360" width="27.929" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="127.857" y="360" width="27.929" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="156.786" y="360" width="27.929" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="185.714" y="360" width="27.929" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="214.643" y="356.919" width="27.929" height="3.081" fill="#41b6c4" opacity="0.9"/>
+<rect x="243.571" y="347.677" width="27.929" height="12.323" fill="#41b6c4" opacity="0.9"/>
+<rect x="272.5" y="350.758" width="27.929" height="9.242" fill="#41b6c4" opacity="0.9"/>
+<rect x="301.429" y="323.03" width="27.929" height="36.97" fill="#41b6c4" opacity="0.9"/>
+<rect x="330.357" y="310.707" width="27.929" height="49.293" fill="#41b6c4" opacity="0.9"/>
+<rect x="359.286" y="279.899" width="27.929" height="80.101" fill="#41b6c4" opacity="0.9"/>
+<rect x="388.214" y="233.687" width="27.929" height="126.313" fill="#41b6c4" opacity="0.9"/>
+<rect x="417.143" y="162.828" width="27.929" height="197.172" fill="#41b6c4" opacity="0.9"/>
+<rect x="446.071" y="104.293" width="27.929" height="255.707" fill="#41b6c4" opacity="0.9"/>
+<rect x="475" y="85.808" width="27.929" height="274.192" fill="#41b6c4" opacity="0.9"/>
+<rect x="503.929" y="55" width="27.929" height="305" fill="#41b6c4" opacity="0.9"/>
+<rect x="532.857" y="91.97" width="27.929" height="268.03" fill="#41b6c4" opacity="0.9"/>
+<rect x="561.786" y="76.566" width="27.929" height="283.434" fill="#41b6c4" opacity="0.9"/>
+<rect x="590.714" y="159.747" width="27.929" height="200.253" fill="#41b6c4" opacity="0.9"/>
+<rect x="619.643" y="215.202" width="27.929" height="144.798" fill="#41b6c4" opacity="0.9"/>
+<rect x="648.571" y="258.333" width="27.929" height="101.667" fill="#41b6c4" opacity="0.9"/>
+<rect x="677.5" y="298.384" width="27.929" height="61.616" fill="#41b6c4" opacity="0.9"/>
+<rect x="706.429" y="326.111" width="27.929" height="33.889" fill="#41b6c4" opacity="0.9"/>
+<rect x="735.357" y="356.919" width="27.929" height="3.081" fill="#41b6c4" opacity="0.9"/>
+<rect x="764.286" y="356.919" width="27.929" height="3.081" fill="#41b6c4" opacity="0.9"/>
+<rect x="793.214" y="356.919" width="27.929" height="3.081" fill="#41b6c4" opacity="0.9"/>
+<rect x="822.143" y="360" width="27.929" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="851.071" y="350.758" width="27.929" height="9.242" fill="#41b6c4" opacity="0.9"/>
+<text x="450.0" y="400" text-anchor="middle" font-size="12" fill="#333">PC1</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">count</text>
+</svg>

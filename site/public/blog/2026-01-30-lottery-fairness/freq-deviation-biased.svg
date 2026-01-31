@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="500.0" y="28" text-anchor="middle" font-size="16">6/49 lottery: deviation from expected frequency (biased simulation)</text>
+<line x1="70" y1="360" x2="980" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
+<line x1="70" y1="283.178" x2="980" y2="283.178" stroke="#111" stroke-width="1" opacity="0.6"/>
+<rect x="70" y="283.178" width="17.086" height="0.968" fill="#2c7fb8" opacity="0.9"/>
+<rect x="88.571" y="283.178" width="17.086" height="5.708" fill="#2c7fb8" opacity="0.9"/>
+<rect x="107.143" y="265.181" width="17.086" height="17.996" fill="#2c7fb8" opacity="0.9"/>
+<rect x="125.714" y="283.178" width="17.086" height="10.449" fill="#2c7fb8" opacity="0.9"/>
+<rect x="144.286" y="220.142" width="17.086" height="63.035" fill="#2c7fb8" opacity="0.9"/>
+<rect x="162.857" y="256.49" width="17.086" height="26.688" fill="#2c7fb8" opacity="0.9"/>
+<rect x="181.429" y="283.178" width="17.086" height="0.177" fill="#2c7fb8" opacity="0.9"/>
+<rect x="200" y="283.178" width="17.086" height="10.449" fill="#2c7fb8" opacity="0.9"/>
+<rect x="218.571" y="257.28" width="17.086" height="25.898" fill="#2c7fb8" opacity="0.9"/>
+<rect x="237.143" y="283.178" width="17.086" height="2.548" fill="#2c7fb8" opacity="0.9"/>
+<rect x="255.714" y="283.178" width="17.086" height="23.882" fill="#2c7fb8" opacity="0.9"/>
+<rect x="274.286" y="283.178" width="17.086" height="8.079" fill="#2c7fb8" opacity="0.9"/>
+<rect x="292.857" y="55" width="17.086" height="228.178" fill="#d7301f" opacity="0.9"/>
+<rect x="311.429" y="283.178" width="17.086" height="46.006" fill="#2c7fb8" opacity="0.9"/>
+<rect x="330" y="276.244" width="17.086" height="6.934" fill="#2c7fb8" opacity="0.9"/>
+<rect x="348.571" y="283.178" width="17.086" height="73.662" fill="#2c7fb8" opacity="0.9"/>
+<rect x="367.143" y="227.254" width="17.086" height="55.924" fill="#2c7fb8" opacity="0.9"/>
+<rect x="385.714" y="259.65" width="17.086" height="23.527" fill="#2c7fb8" opacity="0.9"/>
+<rect x="404.286" y="283.178" width="17.086" height="14.4" fill="#2c7fb8" opacity="0.9"/>
+<rect x="422.857" y="283.178" width="17.086" height="76.822" fill="#2c7fb8" opacity="0.9"/>
+<rect x="441.429" y="283.178" width="17.086" height="16.771" fill="#2c7fb8" opacity="0.9"/>
+<rect x="460" y="280.194" width="17.086" height="2.983" fill="#2c7fb8" opacity="0.9"/>
+<rect x="478.571" y="283.178" width="17.086" height="58.649" fill="#2c7fb8" opacity="0.9"/>
+<rect x="497.143" y="283.178" width="17.086" height="48.377" fill="#2c7fb8" opacity="0.9"/>
+<rect x="515.714" y="283.178" width="17.086" height="41.265" fill="#2c7fb8" opacity="0.9"/>
+<rect x="534.286" y="283.178" width="17.086" height="65.76" fill="#2c7fb8" opacity="0.9"/>
+<rect x="552.857" y="262.021" width="17.086" height="21.157" fill="#2c7fb8" opacity="0.9"/>
+<rect x="571.429" y="283.178" width="17.086" height="59.439" fill="#2c7fb8" opacity="0.9"/>
+<rect x="590" y="252.539" width="17.086" height="30.639" fill="#2c7fb8" opacity="0.9"/>
+<rect x="608.571" y="239.106" width="17.086" height="44.071" fill="#2c7fb8" opacity="0.9"/>
+<rect x="627.143" y="283.178" width="17.086" height="4.918" fill="#2c7fb8" opacity="0.9"/>
+<rect x="645.714" y="282.565" width="17.086" height="0.613" fill="#2c7fb8" opacity="0.9"/>
+<rect x="664.286" y="223.303" width="17.086" height="59.874" fill="#2c7fb8" opacity="0.9"/>
+<rect x="682.857" y="283.178" width="17.086" height="20.721" fill="#2c7fb8" opacity="0.9"/>
+<rect x="701.429" y="283.178" width="17.086" height="16.771" fill="#2c7fb8" opacity="0.9"/>
+<rect x="720" y="283.178" width="17.086" height="24.672" fill="#2c7fb8" opacity="0.9"/>
+<rect x="738.571" y="214.611" width="17.086" height="68.566" fill="#2c7fb8" opacity="0.9"/>
+<rect x="757.143" y="283.178" width="17.086" height="34.154" fill="#2c7fb8" opacity="0.9"/>
+<rect x="775.714" y="283.178" width="17.086" height="51.537" fill="#2c7fb8" opacity="0.9"/>
+<rect x="794.286" y="279.404" width="17.086" height="3.773" fill="#2c7fb8" opacity="0.9"/>
+<rect x="812.857" y="250.959" width="17.086" height="32.219" fill="#2c7fb8" opacity="0.9"/>
+<rect x="831.429" y="283.178" width="17.086" height="49.167" fill="#2c7fb8" opacity="0.9"/>
+<rect x="850" y="252.539" width="17.086" height="30.639" fill="#2c7fb8" opacity="0.9"/>
+<rect x="868.571" y="253.329" width="17.086" height="29.849" fill="#2c7fb8" opacity="0.9"/>
+<rect x="887.143" y="253.329" width="17.086" height="29.849" fill="#2c7fb8" opacity="0.9"/>
+<rect x="905.714" y="280.194" width="17.086" height="2.983" fill="#2c7fb8" opacity="0.9"/>
+<rect x="924.286" y="283.178" width="17.086" height="8.079" fill="#2c7fb8" opacity="0.9"/>
+<rect x="942.857" y="279.404" width="17.086" height="3.773" fill="#2c7fb8" opacity="0.9"/>
+<rect x="961.429" y="283.178" width="17.086" height="35.734" fill="#2c7fb8" opacity="0.9"/>
+<text x="500.0" y="400" text-anchor="middle" font-size="12" fill="#333">ball</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">count − expected</text>
+</svg>

@@ -4,7 +4,6 @@ description: "Architecture basics (NVIDIA-ish GPUs), memory hierarchy, tensor co
 pubDate: 2026-02-09
 tags: [systems, llm, hardware, gpu, inference]
 icon: "🧠"
-draft: true
 ---
 
 Benchmarks are a terrible way to build intuition.

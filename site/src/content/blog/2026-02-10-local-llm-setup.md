@@ -4,7 +4,6 @@ description: "A practical guide to choosing a GPU, estimating VRAM needs, pickin
 pubDate: 2026-02-10
 tags: [systems, llm, inference, gpu, tooling]
 icon: "🛠️"
-draft: true
 ---
 
 “Can I run this model locally?” is almost never a model question.
