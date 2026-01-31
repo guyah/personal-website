@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="420" viewBox="0 0 1050 420">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111}</style>
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+  </marker>
+</defs>
+<text x="525.0" y="28" text-anchor="middle" font-size="16">Lebanese Loto (6/42): deviation from expected frequency (real draws, n=200)</text>
+<line x1="70" y1="360" x2="1030" y2="360" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
+<line x1="70" y1="212.527" x2="1030" y2="212.527" stroke="#111" stroke-width="1" opacity="0.6"/>
+<rect x="70" y="212.527" width="21.029" height="65.357" fill="#2c7fb8" opacity="0.9"/>
+<rect x="92.857" y="212.527" width="21.029" height="53.626" fill="#2c7fb8" opacity="0.9"/>
+<rect x="115.714" y="212.527" width="21.029" height="6.703" fill="#2c7fb8" opacity="0.9"/>
+<rect x="138.571" y="148.846" width="21.029" height="63.681" fill="#2c7fb8" opacity="0.9"/>
+<rect x="161.429" y="113.654" width="21.029" height="98.874" fill="#2c7fb8" opacity="0.9"/>
+<rect x="184.286" y="195.769" width="21.029" height="16.758" fill="#2c7fb8" opacity="0.9"/>
+<rect x="207.143" y="172.308" width="21.029" height="40.22" fill="#2c7fb8" opacity="0.9"/>
+<rect x="230" y="212.527" width="21.029" height="65.357" fill="#2c7fb8" opacity="0.9"/>
+<rect x="252.857" y="212.527" width="21.029" height="147.473" fill="#2c7fb8" opacity="0.9"/>
+<rect x="275.714" y="212.527" width="21.029" height="53.626" fill="#2c7fb8" opacity="0.9"/>
+<rect x="298.571" y="212.527" width="21.029" height="53.626" fill="#2c7fb8" opacity="0.9"/>
+<rect x="321.429" y="137.115" width="21.029" height="75.412" fill="#2c7fb8" opacity="0.9"/>
+<rect x="344.286" y="184.038" width="21.029" height="28.489" fill="#2c7fb8" opacity="0.9"/>
+<rect x="367.143" y="212.527" width="21.029" height="6.703" fill="#2c7fb8" opacity="0.9"/>
+<rect x="390" y="212.527" width="21.029" height="100.549" fill="#2c7fb8" opacity="0.9"/>
+<rect x="412.857" y="184.038" width="21.029" height="28.489" fill="#2c7fb8" opacity="0.9"/>
+<rect x="435.714" y="137.115" width="21.029" height="75.412" fill="#2c7fb8" opacity="0.9"/>
+<rect x="458.571" y="184.038" width="21.029" height="28.489" fill="#2c7fb8" opacity="0.9"/>
+<rect x="481.429" y="160.577" width="21.029" height="51.951" fill="#2c7fb8" opacity="0.9"/>
+<rect x="504.286" y="125.385" width="21.029" height="87.143" fill="#2c7fb8" opacity="0.9"/>
+<rect x="527.143" y="212.527" width="21.029" height="41.896" fill="#2c7fb8" opacity="0.9"/>
+<rect x="550" y="212.527" width="21.029" height="41.896" fill="#2c7fb8" opacity="0.9"/>
+<rect x="572.857" y="212.527" width="21.029" height="53.626" fill="#2c7fb8" opacity="0.9"/>
+<rect x="595.714" y="207.5" width="21.029" height="5.027" fill="#2c7fb8" opacity="0.9"/>
+<rect x="618.571" y="195.769" width="21.029" height="16.758" fill="#2c7fb8" opacity="0.9"/>
+<rect x="641.429" y="184.038" width="21.029" height="28.489" fill="#2c7fb8" opacity="0.9"/>
+<rect x="664.286" y="212.527" width="21.029" height="88.819" fill="#2c7fb8" opacity="0.9"/>
+<rect x="687.143" y="212.527" width="21.029" height="6.703" fill="#2c7fb8" opacity="0.9"/>
+<rect x="710" y="212.527" width="21.029" height="18.434" fill="#2c7fb8" opacity="0.9"/>
+<rect x="732.857" y="184.038" width="21.029" height="28.489" fill="#2c7fb8" opacity="0.9"/>
+<rect x="755.714" y="195.769" width="21.029" height="16.758" fill="#2c7fb8" opacity="0.9"/>
+<rect x="778.571" y="148.846" width="21.029" height="63.681" fill="#2c7fb8" opacity="0.9"/>
+<rect x="801.429" y="212.527" width="21.029" height="6.703" fill="#2c7fb8" opacity="0.9"/>
+<rect x="824.286" y="212.527" width="21.029" height="30.165" fill="#2c7fb8" opacity="0.9"/>
+<rect x="847.143" y="55" width="21.029" height="157.527" fill="#d7301f" opacity="0.9"/>
+<rect x="870" y="137.115" width="21.029" height="75.412" fill="#2c7fb8" opacity="0.9"/>
+<rect x="892.857" y="212.527" width="21.029" height="30.165" fill="#2c7fb8" opacity="0.9"/>
+<rect x="915.714" y="212.527" width="21.029" height="65.357" fill="#2c7fb8" opacity="0.9"/>
+<rect x="938.571" y="172.308" width="21.029" height="40.22" fill="#2c7fb8" opacity="0.9"/>
+<rect x="961.429" y="212.527" width="21.029" height="65.357" fill="#2c7fb8" opacity="0.9"/>
+<rect x="984.286" y="172.308" width="21.029" height="40.22" fill="#2c7fb8" opacity="0.9"/>
+<rect x="1007.143" y="212.527" width="21.029" height="65.357" fill="#2c7fb8" opacity="0.9"/>
+<text x="525.0" y="400" text-anchor="middle" font-size="12" fill="#333">ball</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">count − expected</text>
+</svg>

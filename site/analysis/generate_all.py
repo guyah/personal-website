@@ -493,74 +493,77 @@ def chi2_sf(x: float, k: int) -> float:
 # -----------------------------
 
 def plot_lottery_fairness() -> None:
-    rng = np.random.default_rng(7)
-    n_balls = 49
+    """Lottery fairness check using *real* Lebanese Loto draw history (6/42).
+
+    This intentionally avoids synthetic simulations.
+
+    Data source is scraped via `site/analysis/fetch_lebanon_loto.py`.
+    """
+
+    import csv
+    import subprocess
+
+    slug_dir = PUBLIC / "2026-01-30-lottery-fairness"
+
+    # Ensure dataset exists
+    data_csv = ROOT / "analysis" / "data" / "lebanon_loto_draws.csv"
+    if not data_csv.exists():
+        subprocess.check_call(["python3", str(ROOT / "analysis" / "fetch_lebanon_loto.py")])
+
+    # Load draws
+    draws: list[list[int]] = []
+    with data_csv.open("r", encoding="utf-8") as f:
+        r = csv.DictReader(f)
+        for row in r:
+            nums = [int(row[f"n{i}"]) for i in range(1, 7) if row.get(f"n{i}")]
+            if len(nums) == 6:
+                draws.append(nums)
+
+    if not draws:
+        raise RuntimeError(f"No draws loaded from {data_csv}")
+
+    n_balls = 42
     picks = 6
-    n_draws = 25_000
+    n_draws = len(draws)
 
-    draws = np.vstack([rng.choice(n_balls, size=picks, replace=False) for _ in range(n_draws)])
-    counts = np.bincount(draws.flatten(), minlength=n_balls)
+    counts = np.zeros(n_balls, dtype=float)
+    for d in draws:
+        for v in d:
+            if 1 <= v <= n_balls:
+                counts[v - 1] += 1
+
     expected = n_draws * picks / n_balls
-
     x = np.arange(1, n_balls + 1)
     delta = counts - expected
+
+    highlight_x = int(x[np.argmax(np.abs(delta))])
 
     _bar_chart(
         x,
         delta,
-        title="6/49 lottery: deviation from expected frequency (fair simulation)",
+        title=f"Lebanese Loto (6/42): deviation from expected frequency (real draws, n={n_draws})",
         xlabel="ball",
         ylabel="count − expected",
-        out=PUBLIC / "2026-01-30-lottery-fairness" / "freq-deviation-fair.svg",
+        highlight_x=highlight_x,
+        out=slug_dir / "freq-deviation-lebanon.svg",
+        w=1050,
     )
 
-    # p-value histogram under fairness
-    n_experiments = 300
-    pvals = []
-    for _ in range(n_experiments):
-        d = np.vstack([rng.choice(n_balls, size=picks, replace=False) for _ in range(2_000)])
-        c = np.bincount(d.flatten(), minlength=n_balls)
-        chi2 = float(((c - (2_000 * picks / n_balls)) ** 2 / (2_000 * picks / n_balls)).sum())
-        pvals.append(chi2_sf(chi2, n_balls - 1))
+    # Global chi-square goodness-of-fit on real data.
+    chi2 = float(((counts - expected) ** 2 / expected).sum())
+    p = chi2_sf(chi2, n_balls - 1)
 
-    _histogram(
-        np.array(pvals),
-        bins=20,
-        title="Fair lottery: chi-square p-values should look uniform",
-        xlabel="p-value",
-        ylabel="experiments",
-        out=PUBLIC / "2026-01-30-lottery-fairness" / "pvalues-fair.svg",
-    )
-
-    # biased scenario
-    weights = np.ones(n_balls)
-    weights[12] = 1.12
-
-    def weighted_draw() -> np.ndarray:
-        available = np.arange(n_balls)
-        w = weights.copy()
-        chosen = []
-        for _ in range(picks):
-            p = w / w.sum()
-            idx = rng.choice(len(available), p=p)
-            chosen.append(available[idx])
-            available = np.delete(available, idx)
-            w = np.delete(w, idx)
-        return np.array(chosen)
-
-    draws_b = np.vstack([weighted_draw() for _ in range(n_draws)])
-    counts_b = np.bincount(draws_b.flatten(), minlength=n_balls)
-    delta_b = counts_b - expected
-
-    _bar_chart(
-        x,
-        delta_b,
-        title="6/49 lottery: deviation from expected frequency (biased simulation)",
-        xlabel="ball",
-        ylabel="count − expected",
-        highlight_x=13,
-        out=PUBLIC / "2026-01-30-lottery-fairness" / "freq-deviation-biased.svg",
-    )
+    # Small, dependency-free: write a tiny SVG summary tile.
+    summary = [
+        *(_svg_header(900, 220)),
+        '<text x="450" y="36" text-anchor="middle" font-size="16">Lebanese Loto (6/42) — chi-square goodness-of-fit</text>',
+        f'<text x="40" y="88" font-size="14">draws: {n_draws}</text>',
+        f'<text x="40" y="118" font-size="14">chi² (df={n_balls-1}): {_fmt(chi2)}</text>',
+        f'<text x="40" y="148" font-size="14">p-value: {_fmt(p)}</text>',
+        '<text x="40" y="190" font-size="12" fill="#444">Interpretation: small p-values suggest counts are unlikely under a perfectly uniform model.</text>',
+        *(_svg_footer()),
+    ]
+    _write_svg(slug_dir / "chi2-summary.svg", summary)
 
 
 def plot_sampling_controls() -> None:
