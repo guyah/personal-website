@@ -6,39 +6,33 @@
     <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
   </marker>
 </defs>
-<text x="450.0" y="28" text-anchor="middle" font-size="16">End-to-first-audio latency (synthetic)</text>
+<text x="450.0" y="28" text-anchor="middle" font-size="16">End-to-first-byte-ish latency (real measurements)</text>
 <line x1="70" y1="360" x2="880" y2="360" stroke="#333"/>
 <line x1="70" y1="55" x2="70" y2="360" stroke="#333"/>
-<rect x="70" y="336.538" width="26" height="23.462" fill="#41b6c4" opacity="0.9"/>
-<rect x="97" y="323.132" width="26" height="36.868" fill="#41b6c4" opacity="0.9"/>
-<rect x="124" y="259.451" width="26" height="100.549" fill="#41b6c4" opacity="0.9"/>
-<rect x="151" y="168.956" width="26" height="191.044" fill="#41b6c4" opacity="0.9"/>
-<rect x="178" y="115.33" width="26" height="244.67" fill="#41b6c4" opacity="0.9"/>
-<rect x="205" y="55" width="26" height="305" fill="#41b6c4" opacity="0.9"/>
-<rect x="232" y="78.462" width="26" height="281.538" fill="#41b6c4" opacity="0.9"/>
-<rect x="259" y="75.11" width="26" height="284.89" fill="#41b6c4" opacity="0.9"/>
-<rect x="286" y="78.462" width="26" height="281.538" fill="#41b6c4" opacity="0.9"/>
-<rect x="313" y="122.033" width="26" height="237.967" fill="#41b6c4" opacity="0.9"/>
-<rect x="340" y="199.121" width="26" height="160.879" fill="#41b6c4" opacity="0.9"/>
-<rect x="367" y="235.989" width="26" height="124.011" fill="#41b6c4" opacity="0.9"/>
-<rect x="394" y="262.802" width="26" height="97.198" fill="#41b6c4" opacity="0.9"/>
-<rect x="421" y="286.264" width="26" height="73.736" fill="#41b6c4" opacity="0.9"/>
-<rect x="448" y="296.319" width="26" height="63.681" fill="#41b6c4" opacity="0.9"/>
-<rect x="475" y="306.374" width="26" height="53.626" fill="#41b6c4" opacity="0.9"/>
-<rect x="502" y="333.187" width="26" height="26.813" fill="#41b6c4" opacity="0.9"/>
-<rect x="529" y="329.835" width="26" height="30.165" fill="#41b6c4" opacity="0.9"/>
-<rect x="556" y="343.242" width="26" height="16.758" fill="#41b6c4" opacity="0.9"/>
-<rect x="583" y="346.593" width="26" height="13.407" fill="#41b6c4" opacity="0.9"/>
-<rect x="610" y="339.89" width="26" height="20.11" fill="#41b6c4" opacity="0.9"/>
-<rect x="637" y="356.648" width="26" height="3.352" fill="#41b6c4" opacity="0.9"/>
-<rect x="664" y="360" width="26" height="0" fill="#41b6c4" opacity="0.9"/>
-<rect x="691" y="360" width="26" height="0" fill="#41b6c4" opacity="0.9"/>
-<rect x="718" y="356.648" width="26" height="3.352" fill="#41b6c4" opacity="0.9"/>
-<rect x="745" y="356.648" width="26" height="3.352" fill="#41b6c4" opacity="0.9"/>
-<rect x="772" y="360" width="26" height="0" fill="#41b6c4" opacity="0.9"/>
-<rect x="799" y="360" width="26" height="0" fill="#41b6c4" opacity="0.9"/>
-<rect x="826" y="360" width="26" height="0" fill="#41b6c4" opacity="0.9"/>
-<rect x="853" y="356.648" width="26" height="3.352" fill="#41b6c4" opacity="0.9"/>
+<rect x="70" y="287.381" width="32.75" height="72.619" fill="#41b6c4" opacity="0.9"/>
+<rect x="103.75" y="272.857" width="32.75" height="87.143" fill="#41b6c4" opacity="0.9"/>
+<rect x="137.5" y="142.143" width="32.75" height="217.857" fill="#41b6c4" opacity="0.9"/>
+<rect x="171.25" y="55" width="32.75" height="305" fill="#41b6c4" opacity="0.9"/>
+<rect x="205" y="142.143" width="32.75" height="217.857" fill="#41b6c4" opacity="0.9"/>
+<rect x="238.75" y="330.952" width="32.75" height="29.048" fill="#41b6c4" opacity="0.9"/>
+<rect x="272.5" y="316.429" width="32.75" height="43.571" fill="#41b6c4" opacity="0.9"/>
+<rect x="306.25" y="316.429" width="32.75" height="43.571" fill="#41b6c4" opacity="0.9"/>
+<rect x="340" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="373.75" y="345.476" width="32.75" height="14.524" fill="#41b6c4" opacity="0.9"/>
+<rect x="407.5" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="441.25" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="475" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="508.75" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="542.5" y="345.476" width="32.75" height="14.524" fill="#41b6c4" opacity="0.9"/>
+<rect x="576.25" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="610" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="643.75" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="677.5" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="711.25" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="745" y="330.952" width="32.75" height="29.048" fill="#41b6c4" opacity="0.9"/>
+<rect x="778.75" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="812.5" y="360" width="32.75" height="0" fill="#41b6c4" opacity="0.9"/>
+<rect x="846.25" y="345.476" width="32.75" height="14.524" fill="#41b6c4" opacity="0.9"/>
 <text x="450.0" y="400" text-anchor="middle" font-size="12" fill="#333">ms</text>
-<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">turns</text>
+<text x="18" y="210.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 210.0)">requests</text>
 </svg>

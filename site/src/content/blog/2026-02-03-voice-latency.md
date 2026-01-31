@@ -1,6 +1,6 @@
 ---
 title: "Voice agent latency: measure the tail, not the mean"
-description: "A synthetic-but-realistic latency decomposition: why p95 dominates UX, and how to localize the long tail across ASR, LLM, and TTS."
+description: "A latency analysis pattern: why p95 dominates UX, and how to reason about tails from real measurements."
 pubDate: 2026-02-03
 tags: [voice, systems, data-science]
 icon: "⏱"
@@ -33,7 +33,7 @@ You can decompose it into components:
 - TTS time-to-first-audio (TTFA)
 - output buffering
 
-In a synthetic dataset (meant to resemble real logs), the end-to-first-audio histogram looks like:
+Using a small set of real API timing measurements, the request-latency histogram looks like:
 
 ![](/blog/2026-02-03-voice-latency/end-to-first-audio-hist.svg)
 
@@ -41,9 +41,9 @@ Even with “good” averages, there’s typically a fat right tail.
 
 ## Localize the tail with quantiles
 
-A useful trick: plot **component latency at each quantile**.
+A useful trick: plot **latency at each quantile** (p50/p95/p99) for the measurement you *can* reliably capture.
 
-If ASR dominates p50 but TTS dominates p95, you’ll know where to spend effort.
+If you can’t decompose components yet, quantiles still tell you whether you’re fighting a tail problem.
 
 ![](/blog/2026-02-03-voice-latency/component-quantiles.svg)
 

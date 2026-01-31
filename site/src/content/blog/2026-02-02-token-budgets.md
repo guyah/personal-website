@@ -31,7 +31,7 @@ But for rough planning, an English-ish heuristic is:
 
 > **~4 characters per token** (including spaces/punctuation, averaged)
 
-On synthetic text, the ratio clusters near 4:
+On real prompts (measured via API usage), the ratio clusters near ~4 (language-dependent):
 
 ![](/blog/2026-02-02-token-budgets/chars-per-token.svg)
 
@@ -48,7 +48,7 @@ It’s:
 - how many go to retrieval
 - how many must remain for the model’s response
 
-A synthetic prompt-size distribution (system + history + RAG + user) looks like this:
+A (small-sample) prompt token-count distribution from the measurement set looks like this:
 
 ![](/blog/2026-02-02-token-budgets/prompt-size-hist.svg)
 
