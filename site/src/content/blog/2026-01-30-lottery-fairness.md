@@ -19,7 +19,7 @@ Everything below is reproducible from this repo.
 
 ## Data sanity (before statistics)
 
-![](/blog/2026-01-30-lottery-fairness/data-sanity.svg)
+<img src="data-sanity.svg" alt="Data sanity" loading="lazy" />
 
 Notes:
 
@@ -28,25 +28,25 @@ Notes:
 
 ## 1) Frequency deviations (still the base check)
 
-![](/blog/2026-01-30-lottery-fairness/freq-deviation-lebanon.svg)
+<img src="freq-deviation-lebanon.svg" alt="Frequency deviation (Lebanese Loto)" loading="lazy" />
 
 The plot is **observed count − expected count** for each ball.
 
 ## 2) Global chi-square (still boring — which is good)
 
-![](/blog/2026-01-30-lottery-fairness/chi2-summary.svg)
+<img src="chi2-summary.svg" alt="Chi-square summary" loading="lazy" />
 
 A p-value around 0.5 is exactly what you expect from a fair process at this sample size.
 
 ## 3) Day-of-week effects (sanity check)
 
-![](/blog/2026-01-30-lottery-fairness/weekday-counts.svg)
+<img src="weekday-counts.svg" alt="Weekday counts" loading="lazy" />
 
 This is mostly to make sure the dataset behaves like the real schedule. It does.
 
 ## 4) Inter-number co-occurrence (with multiple-testing caveat)
 
-![](/blog/2026-01-30-lottery-fairness/pair-cooccurrence-heatmap.svg)
+<img src="pair-cooccurrence-heatmap.svg" alt="Pair co-occurrence heatmap" loading="lazy" />
 
 Each cell shows **observed / expected** pair frequency (clipped to 0.6–1.4 so the color scale isn’t dominated by outliers).
 
@@ -56,7 +56,7 @@ Each cell shows **observed / expected** pair frequency (clipped to 0.6–1.4 so 
 
 ## 5) Streakiness / droughts (permutation null)
 
-![](/blog/2026-01-30-lottery-fairness/streakiness-gaps-z.svg)
+<img src="streakiness-gaps-z.svg" alt="Streakiness (drought z-scores)" loading="lazy" />
 
 For each ball, I compute its **longest drought** (max run of missing draws), then compare to a **permutation null** that preserves its total count.
 
@@ -65,7 +65,7 @@ For each ball, I compute its **longest drought** (max run of missing draws), the
 
 ## 6) Entropy of draw features (Monte Carlo baseline)
 
-![](/blog/2026-01-30-lottery-fairness/entropy-sum-mc.svg)
+<img src="entropy-sum-mc.svg" alt="Entropy of sums (Monte Carlo)" loading="lazy" />
 
 I compute Shannon entropy of the **sum-of-draws** distribution and compare it to a Monte Carlo baseline (6/42 without replacement).
 
@@ -74,7 +74,7 @@ I compute Shannon entropy of the **sum-of-draws** distribution and compare it to
 
 ## 7) “Weirdness” dashboard (consecutive numbers, repeats, balance)
 
-![](/blog/2026-01-30-lottery-fairness/metric-zscores.svg)
+<img src="metric-zscores.svg" alt="Metric z-scores" loading="lazy" />
 
 All of these land **well within 1σ** of the Monte Carlo baseline:
 
@@ -84,7 +84,7 @@ All of these land **well within 1σ** of the Monte Carlo baseline:
 
 ## 8) Early vs late era (drift check)
 
-![](/blog/2026-01-30-lottery-fairness/frequency-drift-halves.svg)
+<img src="frequency-drift-halves.svg" alt="Frequency drift (halves)" loading="lazy" />
 
 Splitting the dataset in half (first 100 vs last 100 draws):
 
