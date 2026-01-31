@@ -1,8 +1,6 @@
 """Generate plot images (SVG) referenced by blog posts.
 
-Why SVG?
-- avoids heavy plotting deps on this machine (Python 3.14 wheels are still catching up)
-- deterministic, offline, and easy to diff
+Plots are rendered to SVG for deterministic, lightweight blog assets.
 
 Run from repo root:
 
@@ -23,6 +21,8 @@ from pathlib import Path
 from typing import Iterable
 
 import numpy as np
+
+from plotting import bar_chart, heatmap, histogram, text_panel
 
 
 ROOT = Path(__file__).resolve().parents[1]  # site/
@@ -144,6 +144,8 @@ def _bar_chart(
     ylabel: str,
     out: Path,
     highlight_x: int | None = None,
+    x_labels: list[str] | None = None,
+    label_every: int = 1,
     w: int = 1000,
     h: int = 420,
 ) -> None:
@@ -191,6 +193,13 @@ def _bar_chart(
         s.append(
             f'<rect x="{_fmt(xi)}" y="{_fmt(y_top)}" width="{_fmt(bar_w*0.92)}" height="{_fmt(abs(hh))}" fill="{color}" opacity="0.9"/>'
         )
+
+        # optional labels (for categorical x)
+        if x_labels and (i % max(1, label_every) == 0):
+            lab = x_labels[i] if i < len(x_labels) else str(x[i])
+            s.append(
+                f'<text x="{_fmt(xi+bar_w*0.46)}" y="{pad_t+ih+20}" text-anchor="middle" font-size="11" fill="#333">{lab}</text>'
+            )
 
     s.append(f'<text x="{w/2}" y="{h-20}" text-anchor="middle" font-size="12" fill="#333">{xlabel}</text>')
     s.append(
@@ -261,7 +270,19 @@ def _histogram(
     _write_svg(out, s)
 
 
-def _heatmap(mat: np.ndarray, *, title: str, out: Path, w: int = 760, h: int = 560) -> None:
+def _heatmap(
+    mat: np.ndarray,
+    *,
+    title: str,
+    out: Path,
+    xlabel: str = "key token",
+    ylabel: str = "query token",
+    x_labels: list[str] | None = None,
+    y_labels: list[str] | None = None,
+    label_every: int = 2,
+    w: int = 760,
+    h: int = 560,
+) -> None:
     mat = np.asarray(mat)
     r, c = mat.shape
 
@@ -312,16 +333,18 @@ def _heatmap(mat: np.ndarray, *, title: str, out: Path, w: int = 760, h: int = 5
     # ticks
     for j in range(c):
         xx = pad_l + (j + 0.5) * cell_w
-        if j % 2 == 0:
-            s.append(f'<text x="{_fmt(xx)}" y="{pad_t+ih+18}" text-anchor="middle" font-size="10" fill="#444">{j}</text>')
+        if j % max(1, label_every) == 0:
+            lab = x_labels[j] if x_labels and j < len(x_labels) else str(j)
+            s.append(f'<text x="{_fmt(xx)}" y="{pad_t+ih+18}" text-anchor="middle" font-size="10" fill="#444">{lab}</text>')
     for i in range(r):
         yy = pad_t + (i + 0.5) * cell_h + 3
-        if i % 2 == 0:
-            s.append(f'<text x="{pad_l-8}" y="{_fmt(yy)}" text-anchor="end" font-size="10" fill="#444">{i}</text>')
+        if i % max(1, label_every) == 0:
+            lab = y_labels[i] if y_labels and i < len(y_labels) else str(i)
+            s.append(f'<text x="{pad_l-8}" y="{_fmt(yy)}" text-anchor="end" font-size="10" fill="#444">{lab}</text>')
 
-    s.append(f'<text x="{w/2}" y="{h-20}" text-anchor="middle" font-size="12" fill="#333">key token</text>')
+    s.append(f'<text x="{w/2}" y="{h-20}" text-anchor="middle" font-size="12" fill="#333">{xlabel}</text>')
     s.append(
-        f'<text x="18" y="{h/2}" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 {h/2})">query token</text>'
+        f'<text x="18" y="{h/2}" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 18 {h/2})">{ylabel}</text>'
     )
 
     s += _svg_footer()
@@ -495,13 +518,13 @@ def chi2_sf(x: float, k: int) -> float:
 def plot_lottery_fairness() -> None:
     """Lottery fairness check using *real* Lebanese Loto draw history (6/42).
 
-    This intentionally avoids synthetic simulations.
-
     Data source is scraped via `site/analysis/fetch_lebanon_loto.py`.
     """
 
     import csv
+    import datetime as dt
     import subprocess
+    from collections import Counter
 
     slug_dir = PUBLIC / "2026-01-30-lottery-fairness"
 
@@ -512,12 +535,19 @@ def plot_lottery_fairness() -> None:
 
     # Load draws
     draws: list[list[int]] = []
+    dates: list[dt.date] = []
     with data_csv.open("r", encoding="utf-8") as f:
         r = csv.DictReader(f)
         for row in r:
             nums = [int(row[f"n{i}"]) for i in range(1, 7) if row.get(f"n{i}")]
-            if len(nums) == 6:
-                draws.append(nums)
+            if len(nums) != 6:
+                continue
+            try:
+                d = dt.date.fromisoformat(row["date"])
+            except Exception:
+                continue
+            draws.append(sorted(nums))
+            dates.append(d)
 
     if not draws:
         raise RuntimeError(f"No draws loaded from {data_csv}")
@@ -525,6 +555,49 @@ def plot_lottery_fairness() -> None:
     n_balls = 42
     picks = 6
     n_draws = len(draws)
+
+    # Sort by date just in case the CSV isn't strictly ordered.
+    order = np.argsort(np.array([d.toordinal() for d in dates]))
+    draws = [draws[i] for i in order]
+    dates = [dates[i] for i in order]
+
+    rng = np.random.default_rng(7)
+
+    # -----------------------------
+    # Data sanity checks
+    # -----------------------------
+    out_of_range = 0
+    duplicate_in_draw = 0
+    for d in draws:
+        if any(v < 1 or v > n_balls for v in d):
+            out_of_range += 1
+        if len(set(d)) != len(d):
+            duplicate_in_draw += 1
+
+    date_min = dates[0]
+    date_max = dates[-1]
+    weekday_counts = Counter([d.weekday() for d in dates])  # Mon=0
+
+    text_panel(
+        title="Lebanese Loto (6/42) — dataset sanity",
+        lines=[
+            f"draws: {n_draws}",
+            f"date range: {date_min.isoformat()} → {date_max.isoformat()}",
+            f"duplicates in draw: {duplicate_in_draw}",
+            f"out-of-range draws: {out_of_range}",
+            (
+                "weekday counts: "
+                f"Mon={weekday_counts.get(0,0)}, Tue={weekday_counts.get(1,0)}, "
+                f"Wed={weekday_counts.get(2,0)}, Thu={weekday_counts.get(3,0)}, "
+                f"Fri={weekday_counts.get(4,0)}, Sat={weekday_counts.get(5,0)}, "
+                f"Sun={weekday_counts.get(6,0)}"
+            ),
+        ],
+        footer="Source: lebanon-lotto.com (not official LLDJ).",
+        out=slug_dir / "data-sanity.svg",
+        w=980,
+        h=240,
+    )
 
     counts = np.zeros(n_balls, dtype=float)
     for d in draws:
@@ -538,7 +611,7 @@ def plot_lottery_fairness() -> None:
 
     highlight_x = int(x[np.argmax(np.abs(delta))])
 
-    _bar_chart(
+    bar_chart(
         x,
         delta,
         title=f"Lebanese Loto (6/42): deviation from expected frequency (real draws, n={n_draws})",
@@ -553,17 +626,228 @@ def plot_lottery_fairness() -> None:
     chi2 = float(((counts - expected) ** 2 / expected).sum())
     p = chi2_sf(chi2, n_balls - 1)
 
-    # Small, dependency-free: write a tiny SVG summary tile.
-    summary = [
-        *(_svg_header(900, 220)),
-        '<text x="450" y="36" text-anchor="middle" font-size="16">Lebanese Loto (6/42) — chi-square goodness-of-fit</text>',
-        f'<text x="40" y="88" font-size="14">draws: {n_draws}</text>',
-        f'<text x="40" y="118" font-size="14">chi² (df={n_balls-1}): {_fmt(chi2)}</text>',
-        f'<text x="40" y="148" font-size="14">p-value: {_fmt(p)}</text>',
-        '<text x="40" y="190" font-size="12" fill="#444">Interpretation: small p-values suggest counts are unlikely under a perfectly uniform model.</text>',
-        *(_svg_footer()),
+    text_panel(
+        title="Lebanese Loto (6/42) — chi-square goodness-of-fit",
+        lines=[
+            f"draws: {n_draws}",
+            f"chi² (df={n_balls-1}): {_fmt(chi2)}",
+            f"p-value: {_fmt(p)}",
+        ],
+        footer=(
+            "Interpretation: small p-values suggest counts are unlikely under a perfectly uniform model.",
+            12,
+            "#444",
+        ),
+        out=slug_dir / "chi2-summary.svg",
+        w=900,
+        h=220,
+    )
+
+    # -----------------------------
+    # 1) Day-of-week effects (sanity)
+    # -----------------------------
+    week_labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    week_counts = np.array([weekday_counts.get(i, 0) for i in range(7)], dtype=float)
+    bar_chart(
+        np.arange(1, 8),
+        week_counts,
+        title="Draw count by weekday (sanity check)",
+        xlabel="weekday",
+        ylabel="draws",
+        out=slug_dir / "weekday-counts.svg",
+        x_labels=week_labels,
+        label_every=1,
+        w=900,
+    )
+
+    # -----------------------------
+    # 2) Inter-number co-occurrence (lift vs expected)
+    # -----------------------------
+    pair_counts = np.zeros((n_balls, n_balls), dtype=float)
+    for d in draws:
+        for i in range(picks):
+            for j in range(i + 1, picks):
+                a, b = d[i] - 1, d[j] - 1
+                pair_counts[a, b] += 1
+                pair_counts[b, a] += 1
+
+    expected_pair = n_draws * (picks * (picks - 1) / 2) / (n_balls * (n_balls - 1) / 2)
+    lift = pair_counts / max(1e-9, expected_pair)
+    np.fill_diagonal(lift, 1.0)
+    lift_clipped = np.clip(lift, 0.6, 1.4)
+    labels = [str(i) for i in range(1, n_balls + 1)]
+    heatmap(
+        lift_clipped,
+        title="Pair co-occurrence lift (observed / expected, clipped)",
+        out=slug_dir / "pair-cooccurrence-heatmap.svg",
+        xlabel="ball j",
+        ylabel="ball i",
+        x_labels=labels,
+        y_labels=labels,
+        label_every=4,
+        w=940,
+        h=720,
+    )
+
+    # -----------------------------
+    # 3) Streakiness: longest gaps vs permutation null
+    # -----------------------------
+    def _longest_gap(bits: np.ndarray) -> int:
+        longest = 0
+        current = 0
+        for v in bits:
+            if v == 0:
+                current += 1
+                longest = max(longest, current)
+            else:
+                current = 0
+        return longest
+
+    max_gaps = []
+    gap_z = []
+    gap_mu = []
+    gap_sd = []
+    n_perm = 400
+
+    for ball in range(1, n_balls + 1):
+        bits = np.array([1 if ball in d else 0 for d in draws], dtype=np.int8)
+        obs_gap = _longest_gap(bits)
+        sims = []
+        for _ in range(n_perm):
+            perm = rng.permutation(bits)
+            sims.append(_longest_gap(perm))
+        mu = float(np.mean(sims))
+        sd = float(np.std(sims) + 1e-9)
+        z = (obs_gap - mu) / sd
+        max_gaps.append(obs_gap)
+        gap_z.append(z)
+        gap_mu.append(mu)
+        gap_sd.append(sd)
+
+    histogram(
+        np.array(gap_z, dtype=float),
+        bins=16,
+        title="Longest drought z-scores per ball (permutation null)",
+        xlabel="z-score",
+        ylabel="balls",
+        out=slug_dir / "streakiness-gaps-z.svg",
+        vline=0.0,
+        w=900,
+    )
+
+    # -----------------------------
+    # 4) Monte Carlo baselines (6/42 without replacement)
+    # -----------------------------
+    def _draw_once() -> list[int]:
+        return sorted((rng.choice(n_balls, size=picks, replace=False) + 1).tolist())
+
+    def _entropy(vals: list[int]) -> float:
+        c = Counter(vals)
+        total = sum(c.values())
+        return float(-sum((v / total) * math.log2(v / total) for v in c.values() if v))
+
+    # observed per-draw metrics
+    sums_obs = [sum(d) for d in draws]
+    odds_obs = [sum(1 for v in d if v % 2 == 1) for d in draws]
+    lows_obs = [sum(1 for v in d if v <= 21) for d in draws]
+    consec_obs = [sum(1 for a, b in zip(d, d[1:]) if b - a == 1) for d in draws]
+    repeats_obs = [len(set(draws[i]) & set(draws[i - 1])) for i in range(1, n_draws)]
+
+    # simulation
+    mc_iters = 700
+    mc_entropy_sum = []
+    mc_entropy_odd = []
+    mc_entropy_low = []
+    mc_consec_mean = []
+    mc_repeat_mean = []
+    mc_sum_mean = []
+    mc_odd_mean = []
+    mc_low_mean = []
+
+    for _ in range(mc_iters):
+        sim_draws = [_draw_once() for _ in range(n_draws)]
+        sim_sums = [sum(d) for d in sim_draws]
+        sim_odds = [sum(1 for v in d if v % 2 == 1) for d in sim_draws]
+        sim_lows = [sum(1 for v in d if v <= 21) for d in sim_draws]
+        sim_consec = [sum(1 for a, b in zip(d, d[1:]) if b - a == 1) for d in sim_draws]
+        sim_repeats = [len(set(sim_draws[i]) & set(sim_draws[i - 1])) for i in range(1, n_draws)]
+
+        mc_entropy_sum.append(_entropy(sim_sums))
+        mc_entropy_odd.append(_entropy(sim_odds))
+        mc_entropy_low.append(_entropy(sim_lows))
+
+        mc_consec_mean.append(float(np.mean(sim_consec)))
+        mc_repeat_mean.append(float(np.mean(sim_repeats)))
+        mc_sum_mean.append(float(np.mean(sim_sums)))
+        mc_odd_mean.append(float(np.mean(sim_odds)))
+        mc_low_mean.append(float(np.mean(sim_lows)))
+
+    # entropy plot (sum distribution)
+    histogram(
+        np.array(mc_entropy_sum, dtype=float),
+        bins=18,
+        title="Entropy of draw sums: Monte Carlo null (6/42)",
+        xlabel="entropy (bits)",
+        ylabel="MC samples",
+        out=slug_dir / "entropy-sum-mc.svg",
+        vline=_entropy(sums_obs),
+        w=900,
+    )
+
+    # z-score summary of several metrics
+    def _z(obs: float, arr: list[float]) -> float:
+        mu = float(np.mean(arr))
+        sd = float(np.std(arr) + 1e-9)
+        return (obs - mu) / sd
+
+    metrics = [
+        ("consec pairs", _z(float(np.mean(consec_obs)), mc_consec_mean)),
+        ("repeats prev", _z(float(np.mean(repeats_obs)), mc_repeat_mean)),
+        ("sum", _z(float(np.mean(sums_obs)), mc_sum_mean)),
+        ("odd count", _z(float(np.mean(odds_obs)), mc_odd_mean)),
+        ("low count", _z(float(np.mean(lows_obs)), mc_low_mean)),
     ]
-    _write_svg(slug_dir / "chi2-summary.svg", summary)
+    bar_chart(
+        np.arange(1, len(metrics) + 1),
+        np.array([m[1] for m in metrics], dtype=float),
+        title="Observed minus expected (z-scores) for key metrics",
+        xlabel="metric",
+        ylabel="z-score",
+        out=slug_dir / "metric-zscores.svg",
+        x_labels=[m[0] for m in metrics],
+        label_every=1,
+        w=980,
+    )
+
+    # -----------------------------
+    # 5) Early vs late era (concept drift)
+    # -----------------------------
+    mid = n_draws // 2
+    early = draws[:mid]
+    late = draws[mid:]
+
+    def _counts(ds: list[list[int]]) -> np.ndarray:
+        c = np.zeros(n_balls, dtype=float)
+        for d in ds:
+            for v in d:
+                c[v - 1] += 1
+        return c
+
+    early_counts = _counts(early)
+    late_counts = _counts(late)
+    drift = late_counts - early_counts
+    highlight_drift = int(x[np.argmax(np.abs(drift))])
+
+    bar_chart(
+        x,
+        drift,
+        title=f"Frequency drift: late − early (n={len(late)} vs {len(early)})",
+        xlabel="ball",
+        ylabel="count difference",
+        highlight_x=highlight_drift,
+        out=slug_dir / "frequency-drift-halves.svg",
+        w=1050,
+    )
 
 
 def plot_sampling_controls() -> None:
