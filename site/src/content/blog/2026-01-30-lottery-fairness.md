@@ -6,27 +6,20 @@ tags: [data-science, statistics]
 icon: "🎲"
 ---
 
-import Tldr from "../../components/Tldr.astro";
-import Numbers from "../../components/Numbers.astro";
-import Insights from "../../components/Insights.astro";
-import Callout from "../../components/Callout.astro";
+## TL;DR
 
-<Tldr
-	items={[
-		"Nothing looks statistically weird in the last 200 Lebanese Loto draws (p≈0.50).",
-		"‘Hot’ and ‘cold’ numbers happen automatically in finite samples—don’t confuse that with bias.",
-		"If you want to detect small bias, you need more data and a plausible mechanism.",
-	]}
-/>
+- Nothing looks statistically weird in the last **200 Lebanese Loto** draws (**p≈0.50**).
+- “Hot” and “cold” numbers appear automatically in finite samples — that’s not bias.
+- To detect small bias, you need more draws *and* a plausible mechanism.
 
-<Numbers
-	rows={[
-		["Dataset", "Lebanese Loto (6/42), last 200 draws"],
-		["Global test", "chi²(df=41)=40.26 → p=0.503"],
-		["Hottest (Δ count)", "35 (+13.4), 5 (+8.4), 20 (+7.4)"],
-		["Coldest (Δ count)", "9 (−12.6), 15 (−8.6), 27 (−7.6)"],
-	]}
-/>
+## Numbers (from the dataset)
+
+| Item | Value |
+|---|---|
+| Dataset | Lebanese Loto (6/42), last 200 draws |
+| Global test | chi²(df=41)=40.26 → p=0.503 |
+| Hottest (Δ count) | 35 (+13.4), 5 (+8.4), 20 (+7.4) |
+| Coldest (Δ count) | 9 (−12.6), 15 (−8.6), 27 (−7.6) |
 
 When people ask *“is the lottery rigged?”* they usually mean one of two things:
 
@@ -63,19 +56,19 @@ A chi-square goodness-of-fit test answers a narrow question:
 
 ![](/blog/2026-01-30-lottery-fairness/chi2-summary.svg)
 
-<Insights
-	title="What this actually means"
-	items={[
-		"p≈0.50 is boring (good): the aggregate counts look like chance.",
-		"The biggest ‘hot’ ball (35) is not evidence—randomness produces leaders and laggards automatically at small n.",
-		"The only useful definition of ‘suspicious’ is: statistically unlikely *and* mechanistically plausible.",
-	]}
-/>
+## What this actually means
 
-<Callout
-	title="If you want to catch real bias"
-	body="You need (1) more draws, (2) stable rules, and (3) a plausible mechanism (machine, ball batches, venue changes). Otherwise you’re just pattern-matching noise."
-/>
+- **p≈0.50 is boring (good):** the aggregate counts look like chance.
+- The biggest “hot” ball (35) is **not** evidence — randomness produces leaders/laggards at small n.
+- The only useful definition of “suspicious” is: statistically unlikely **and** mechanistically plausible.
+
+## If you want to catch real bias
+
+You need:
+
+1) more draws, 2) stable rules, and 3) a plausible mechanism (machine, ball batches, venue changes).
+
+Otherwise you’re just pattern-matching noise.
 
 ## Data source note
 
