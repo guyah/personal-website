@@ -3,32 +3,72 @@
 ---
 
 <div class="talk" id="talk">
-	<button id="talk-open" class="btn">Talk to Guy</button>
-
-	<dialog id="talk-modal" class="talk-modal">
+	<dialog id="talk-modal" class="talk-modal" aria-labelledby="talk-title">
 		<div class="talk-modal__inner">
 			<div class="talk-modal__header">
-				<h2 class="talk-modal__title">Talk to Guy</h2>
+				<div>
+					<p class="talk-modal__eyebrow">Voice cockpit</p>
+					<h2 class="talk-modal__title" id="talk-title">Talk to Guy</h2>
+				</div>
 				<button id="talk-close" class="talk-modal__close" aria-label="Close">×</button>
 			</div>
 
-			<p class="small" id="talk-status">Press Start, speak, then Stop.</p>
+			<div class="talk-modal__status">
+				<span class="status-dot" id="talk-status-dot" aria-hidden="true"></span>
+				<p class="small" id="talk-status">Press Start, speak, then Stop.</p>
+			</div>
 
 			<div class="talk-modal__controls">
 				<button id="talk-start" class="btn">Start</button>
 				<button id="talk-stop" class="btn" disabled>Stop</button>
+				<button id="talk-reset" class="btn btn--ghost">Reset</button>
+			</div>
+
+			<div class="talk-cockpit">
+				<section class="panel panel--mic">
+					<header>
+						<h3>Mic input</h3>
+						<span class="pill" id="talk-mic-pill">idle</span>
+					</header>
+					<canvas id="talk-waveform" class="waveform" width="720" height="140"></canvas>
+					<div class="meter" aria-hidden="true">
+						<span id="talk-meter"></span>
+					</div>
+					<p class="small" id="talk-permission"></p>
+				</section>
+
+				<section class="panel panel--bot">
+					<header>
+						<h3>Guy AI</h3>
+						<span class="pill" id="talk-bot-pill">standing by</span>
+					</header>
+					<div class="bot-indicator" id="talk-speaking">
+						<div class="bot-indicator__orb"></div>
+						<p class="small">speaking</p>
+					</div>
+					<div class="latency">
+						<div><span>STT final</span><strong id="lat-stt">—</strong><em>ms</em></div>
+						<div><span>LLM</span><strong id="lat-llm">—</strong><em>ms</em></div>
+						<div><span>TTS first</span><strong id="lat-tts-first">—</strong><em>ms</em></div>
+						<div><span>TTS total</span><strong id="lat-tts-total">—</strong><em>ms</em></div>
+					</div>
+				</section>
 			</div>
 
 			<div class="talk-modal__transcript">
-				<p class="small">Transcript</p>
-				<pre id="talk-transcript" class="mono"></pre>
-				<p class="small">Reply</p>
-				<pre id="talk-reply" class="mono"></pre>
+				<div class="transcript-panel">
+					<p class="small">You</p>
+					<pre id="talk-transcript" class="mono"></pre>
+				</div>
+				<div class="transcript-panel">
+					<p class="small">Guy</p>
+					<pre id="talk-reply" class="mono"></pre>
+				</div>
 			</div>
 
-			<audio id="talk-audio" controls class="talk-modal__audio"></audio>
+			<audio id="talk-audio" class="talk-modal__audio" controls></audio>
 
-			<p class="small">
+			<p class="small hint">
 				Local dev only: requires <code>OPENAI_API_KEY</code> for the backend.
 			</p>
 		</div>
@@ -37,56 +77,218 @@
 
 <style>
 	.talk { margin-top: 1.5rem; }
-	/* Make it visually obvious */
-	.talk .btn { font-weight: 700; }
-	.btn {
-		border: 1px solid rgba(255,255,255,0.18);
-		background: rgba(255,255,255,0.06);
-		padding: 0.55rem 0.85rem;
-		border-radius: 0.6rem;
-		cursor: pointer;
-	}
-	.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 	.talk-modal { border: none; padding: 0; background: transparent; }
-	.talk-modal::backdrop { background: rgba(0,0,0,0.55); }
+	.talk-modal::backdrop {
+		background: radial-gradient(circle at top, rgba(47, 142, 229, 0.18), rgba(6, 11, 22, 0.38));
+	}
 	.talk-modal__inner {
-		background: rgba(10, 12, 12, 0.98);
-		border: 1px solid rgba(255,255,255,0.14);
-		border-radius: 1rem;
-		padding: 1rem;
-		width: min(720px, calc(100vw - 2rem));
+		background:
+			radial-gradient(circle at 20% 0%, rgba(47, 142, 229, 0.12), transparent 55%),
+			linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 251, 255, 0.98));
+		border: 1px solid rgba(47, 142, 229, 0.28);
+		border-radius: 1.2rem;
+		padding: 1.2rem;
+		width: min(860px, calc(100vw - 2rem));
+		box-shadow: 0 20px 60px rgba(6, 11, 22, 0.18);
 	}
 	.talk-modal__header { display:flex; align-items:center; justify-content:space-between; gap: 1rem; }
-	.talk-modal__title { margin: 0; font-size: 1.1rem; }
-	.talk-modal__close { background: transparent; border: none; color: inherit; font-size: 1.5rem; cursor: pointer; }
-	.talk-modal__controls { display:flex; gap: 0.75rem; margin: 0.75rem 0 1rem; }
-	.talk-modal__transcript pre { white-space: pre-wrap; margin: 0.25rem 0 0.75rem; }
-	.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-	.talk-modal__audio { width: 100%; margin-top: 0.5rem; }
+	.talk-modal__eyebrow { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.65rem; opacity: 0.7; margin: 0; color: var(--muted-color); }
+	.talk-modal__title { margin: 0; font-size: 1.35rem; }
+	.talk-modal__close { background: transparent; border: none; color: inherit; font-size: 1.6rem; cursor: pointer; }
+	.talk-modal__status { display:flex; align-items:center; gap: 0.6rem; margin-top: 0.75rem; }
+	.status-dot {
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		background: rgba(47, 142, 229, 0.2);
+		box-shadow: 0 0 0 4px rgba(47, 142, 229, 0.12);
+		transition: background 0.2s ease, box-shadow 0.2s ease;
+	}
+	.status-dot.is-live { background: var(--accent-color); box-shadow: 0 0 0 6px rgba(47, 142, 229, 0.18); }
+
+	.talk-modal__controls { display:flex; flex-wrap: wrap; gap: 0.75rem; margin: 0.9rem 0 1.1rem; }
+
+	.talk-cockpit { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+	.panel {
+		background: rgba(255, 255, 255, 0.88);
+		border: 1px solid rgba(47, 142, 229, 0.18);
+		border-radius: 1rem;
+		padding: 0.9rem;
+		position: relative;
+		overflow: hidden;
+	}
+	.panel header { display:flex; align-items:center; justify-content:space-between; }
+	.panel h3 { margin: 0; font-size: 0.95rem; }
+	.pill {
+		font-size: 0.7rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid rgba(47, 142, 229, 0.2);
+		color: var(--muted-color);
+		opacity: 0.9;
+	}
+
+	.waveform {
+		width: 100%;
+		height: 140px;
+		margin-top: 0.6rem;
+		border-radius: 0.8rem;
+		background: rgba(47, 142, 229, 0.04);
+		border: 1px solid rgba(47, 142, 229, 0.12);
+	}
+	.meter {
+		margin-top: 0.6rem;
+		height: 6px;
+		border-radius: 999px;
+		background: rgba(47, 142, 229, 0.08);
+		overflow: hidden;
+	}
+	.meter span {
+		display: block;
+		height: 100%;
+		width: 0%;
+		background: linear-gradient(90deg, rgba(47, 142, 229, 0.7), rgba(47, 142, 229, 0.25));
+		transition: width 0.08s ease;
+	}
+
+	.bot-indicator { display:flex; align-items:center; gap: 0.6rem; margin: 0.8rem 0 1rem; opacity: 0.4; }
+	.bot-indicator.is-speaking { opacity: 1; }
+	.bot-indicator__orb {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: radial-gradient(circle at 30% 30%, #ffffff, #2f8ee5 60%, rgba(6, 11, 22, 0.8));
+		box-shadow: 0 0 18px rgba(47, 142, 229, 0.25);
+		animation: pulse 1.2s ease-in-out infinite;
+		transform-origin: center;
+		opacity: 0.25;
+	}
+	.bot-indicator.is-speaking .bot-indicator__orb { opacity: 1; }
+	@keyframes pulse {
+		0%, 100% { transform: scale(0.9); }
+		50% { transform: scale(1.06); }
+	}
+
+	.latency { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 0.8rem; }
+	.latency div {
+		background: rgba(47, 142, 229, 0.06);
+		border-radius: 0.6rem;
+		padding: 0.5rem 0.6rem;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.4rem;
+	}
+	.latency span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.7; }
+	.latency strong { font-size: 1rem; }
+	.latency em { font-size: 0.7rem; opacity: 0.6; }
+
+	.talk-modal__transcript { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+	.transcript-panel {
+		background: rgba(47, 142, 229, 0.04);
+		border: 1px solid rgba(47, 142, 229, 0.12);
+		border-radius: 0.9rem;
+		padding: 0.8rem;
+		min-height: 120px;
+	}
+	.transcript-panel pre { white-space: pre-wrap; margin: 0.35rem 0 0; }
+	.mono { font-family: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Menlo, monospace; }
+	.talk-modal__audio { width: 100%; margin-top: 0.8rem; display: none; }
+	.hint { margin-top: 0.8rem; opacity: 0.7; }
+
+	@media (max-width: 720px) {
+		.talk-modal__inner { padding: 1rem; }
+		.waveform { height: 110px; }
+		.latency { grid-template-columns: 1fr; }
+	}
 </style>
 
-<script>
+<script type="module">
+	import { talkStore } from "../lib/talkStore.js";
+
 	const $ = (id) => document.getElementById(id);
 
 	const modal = $("talk-modal");
-	const openBtn = $("talk-open");
 	const closeBtn = $("talk-close");
 	const startBtn = $("talk-start");
 	const stopBtn = $("talk-stop");
+	const resetBtn = $("talk-reset");
 	const statusEl = $("talk-status");
+	const statusDot = $("talk-status-dot");
 	const transcriptEl = $("talk-transcript");
 	const replyEl = $("talk-reply");
 	const audioEl = $("talk-audio");
+	const waveform = $("talk-waveform");
+	const meter = $("talk-meter");
+	const micPill = $("talk-mic-pill");
+	const botPill = $("talk-bot-pill");
+	const speakingEl = $("talk-speaking");
+	const permissionEl = $("talk-permission");
+	const latStt = $("lat-stt");
+	const latLlm = $("lat-llm");
+	const latTtsFirst = $("lat-tts-first");
+	const latTtsTotal = $("lat-tts-total");
+
+	if (!modal) {
+		throw new Error("Talk modal not found");
+	}
 
 	let ws;
 	let audioCtx;
+	let playbackCtx;
 	let source;
 	let processor;
+	let analyser;
 	let stream;
+	let waveformRaf;
+	let playheadTime = 0;
+	let playbackSampleRate = 24000;
 
 	const TARGET_SAMPLE_RATE = 16000;
 
-	function setStatus(s) { statusEl.textContent = s; }
+	talkStore.hydrate();
+	talkStore.setState({ connection: "disconnected" });
+
+	function applyState(state) {
+		if (state.isOpen && !modal.open) modal.showModal();
+		if (!state.isOpen && modal.open) modal.close();
+
+		statusEl.textContent = state.status;
+		statusDot.classList.toggle("is-live", state.statusLive);
+		micPill.textContent = state.micState;
+		botPill.textContent = state.botState;
+		speakingEl.classList.toggle("is-speaking", state.speaking);
+		transcriptEl.textContent = state.transcript;
+		replyEl.textContent = state.reply;
+		permissionEl.textContent = state.permission;
+		latStt.textContent = state.latencies.stt;
+		latLlm.textContent = state.latencies.llm;
+		latTtsFirst.textContent = state.latencies.ttsFirst;
+		latTtsTotal.textContent = state.latencies.ttsTotal;
+		startBtn.disabled = state.startDisabled;
+		stopBtn.disabled = state.stopDisabled;
+	}
+
+	talkStore.subscribe(applyState);
+
+	function setStatus(s) { talkStore.setState({ status: s }); }
+	function setStatusLive(on) { talkStore.setState({ statusLive: on }); }
+	function setMicState(text) { talkStore.setState({ micState: text }); }
+	function setBotState(text) { talkStore.setState({ botState: text }); }
+	function setSpeaking(on) { talkStore.setState({ speaking: on }); }
+
+	function resetLatencies() {
+		talkStore.setState({
+			latencies: { stt: "—", llm: "—", ttsFirst: "—", ttsTotal: "—" },
+		});
+	}
+
+	function setConnection(status) {
+		talkStore.setState({ connection: status });
+	}
 
 	function encodeBase64(bytes) {
 		let bin = "";
@@ -95,6 +297,13 @@
 			bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
 		}
 		return btoa(bin);
+	}
+
+	function decodeBase64ToBytes(b64) {
+		const bin = atob(b64);
+		const out = new Uint8Array(bin.length);
+		for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+		return out;
 	}
 
 	function downsampleBuffer(buffer, inputSampleRate, outputSampleRate) {
@@ -129,7 +338,6 @@
 
 	function wsUrl() {
 		const proto = location.protocol === "https:" ? "wss" : "ws";
-		// When opened via file://, hostname is empty; default to localhost.
 		const host = location.hostname || "localhost";
 		return `${proto}://${host}:8000/ws/talk`;
 	}
@@ -137,33 +345,132 @@
 	async function ensureWs() {
 		if (ws && ws.readyState === WebSocket.OPEN) return;
 		ws = new WebSocket(wsUrl());
+		ws.addEventListener("close", () => setConnection("disconnected"));
+		ws.addEventListener("error", () => setConnection("error"));
 		ws.onmessage = (ev) => {
 			try {
 				const msg = JSON.parse(ev.data);
 				if (msg.type === "status") setStatus(msg.message);
-				if (msg.type === "transcript") transcriptEl.textContent = msg.text || "";
-				if (msg.type === "reply") replyEl.textContent = msg.text || "";
+				if (msg.type === "transcript_partial") talkStore.setState({ transcript: msg.text || "" });
+				if (msg.type === "transcript") talkStore.setState({ transcript: msg.text || "" });
+				if (msg.type === "reply") talkStore.setState({ reply: msg.text || "" });
+				if (msg.type === "latency") {
+					if (msg.stage === "stt_final") talkStore.setState({ latencies: { stt: msg.ms } });
+					if (msg.stage === "llm") talkStore.setState({ latencies: { llm: msg.ms } });
+					if (msg.stage === "tts_first") talkStore.setState({ latencies: { ttsFirst: msg.ms } });
+					if (msg.stage === "tts_total") talkStore.setState({ latencies: { ttsTotal: msg.ms } });
+				}
 				if (msg.type === "audio") {
-					const bytes = Uint8Array.from(atob(msg.data), c => c.charCodeAt(0));
+					const bytes = decodeBase64ToBytes(msg.data || "");
 					const blob = new Blob([bytes], { type: msg.mime || "audio/wav" });
 					const url = URL.createObjectURL(blob);
 					audioEl.src = url;
+					audioEl.style.display = "block";
 					audioEl.play().catch(() => {});
+				}
+				if (msg.type === "audio_start") {
+					setSpeaking(true);
+					setBotState("speaking");
+					playheadTime = 0;
+					playbackSampleRate = msg.sample_rate_hz || 24000;
+					if (!playbackCtx) {
+						playbackCtx = new (window.AudioContext || window.webkitAudioContext)();
+					}
+				}
+				if (msg.type === "audio_chunk") {
+					const bytes = decodeBase64ToBytes(msg.data || "");
+					playPCMChunk(bytes, playbackSampleRate);
+				}
+				if (msg.type === "audio_end") {
+					setSpeaking(false);
+					setBotState("ready");
 				}
 			} catch (e) {
 				// ignore
 			}
 		};
 		await new Promise((resolve, reject) => {
-			ws.onopen = resolve;
-			ws.onerror = reject;
+			ws.addEventListener(
+				"open",
+				() => {
+					setConnection("connected");
+					resolve();
+				},
+				{ once: true }
+			);
+			ws.addEventListener(
+				"error",
+				(err) => {
+					setConnection("error");
+					reject(err);
+				},
+				{ once: true }
+			);
 		});
 	}
 
+	function playPCMChunk(bytes, sampleRate) {
+		if (!playbackCtx) return;
+		const frameCount = bytes.length / 2;
+		const audioBuffer = playbackCtx.createBuffer(1, frameCount, sampleRate);
+		const channel = audioBuffer.getChannelData(0);
+		for (let i = 0; i < frameCount; i++) {
+			const low = bytes[i * 2];
+			const high = bytes[i * 2 + 1];
+			let sample = (high << 8) | low;
+			if (sample >= 0x8000) sample -= 0x10000;
+			channel[i] = sample / 0x8000;
+		}
+		const sourceNode = playbackCtx.createBufferSource();
+		sourceNode.buffer = audioBuffer;
+		sourceNode.connect(playbackCtx.destination);
+		const now = playbackCtx.currentTime;
+		if (playheadTime < now) playheadTime = now;
+		sourceNode.start(playheadTime);
+		playheadTime += audioBuffer.duration;
+	}
+
+	function drawWaveform() {
+		if (!analyser || !waveform) return;
+		const ctx = waveform.getContext("2d");
+		if (!ctx) return;
+		const data = new Uint8Array(analyser.fftSize);
+		analyser.getByteTimeDomainData(data);
+		ctx.clearRect(0, 0, waveform.width, waveform.height);
+		ctx.fillStyle = "rgba(47, 142, 229, 0.05)";
+		ctx.fillRect(0, 0, waveform.width, waveform.height);
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "rgba(47, 142, 229, 0.85)";
+		ctx.beginPath();
+		const sliceWidth = waveform.width / data.length;
+		let x = 0;
+		let sum = 0;
+		for (let i = 0; i < data.length; i++) {
+			const v = data[i] / 128.0;
+			const y = (v * waveform.height) / 2;
+			if (i === 0) ctx.moveTo(x, y);
+			else ctx.lineTo(x, y);
+			sum += Math.abs(v - 1);
+			x += sliceWidth;
+		}
+		ctx.lineTo(waveform.width, waveform.height / 2);
+		ctx.stroke();
+		const level = Math.min(1, sum / data.length * 2.8);
+		meter.style.width = `${Math.round(level * 100)}%`;
+		waveformRaf = requestAnimationFrame(drawWaveform);
+	}
+
+	function stopWaveform() {
+		if (waveformRaf) cancelAnimationFrame(waveformRaf);
+		waveformRaf = null;
+		if (meter) meter.style.width = "0%";
+	}
+
 	async function startRecording() {
-		transcriptEl.textContent = "";
-		replyEl.textContent = "";
+		talkStore.setState({ transcript: "", reply: "", permission: "" });
 		audioEl.removeAttribute("src");
+		audioEl.style.display = "none";
+		resetLatencies();
 
 		await ensureWs();
 		ws.send(JSON.stringify({ type: "start", sample_rate_hz: TARGET_SAMPLE_RATE }));
@@ -171,6 +478,8 @@
 		stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 		audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 		source = audioCtx.createMediaStreamSource(stream);
+		analyser = audioCtx.createAnalyser();
+		analyser.fftSize = 2048;
 		processor = audioCtx.createScriptProcessor(4096, 1, 1);
 
 		processor.onaudioprocess = (e) => {
@@ -181,36 +490,75 @@
 			ws.send(JSON.stringify({ type: "audio_chunk", data: encodeBase64(pcmBytes) }));
 		};
 
+		source.connect(analyser);
 		source.connect(processor);
 		processor.connect(audioCtx.destination);
+		setMicState("live");
+		setStatusLive(true);
+		drawWaveform();
 	}
 
 	async function stopRecording() {
 		try { processor && processor.disconnect(); } catch {}
 		try { source && source.disconnect(); } catch {}
+		try { analyser && analyser.disconnect(); } catch {}
 		try { audioCtx && audioCtx.close(); } catch {}
 		if (stream) stream.getTracks().forEach(t => t.stop());
 		stream = null;
 		processor = null;
 		source = null;
+		analyser = null;
 		audioCtx = null;
+		setMicState("idle");
+		setStatusLive(false);
+		stopWaveform();
 
 		if (ws && ws.readyState === WebSocket.OPEN) {
 			ws.send(JSON.stringify({ type: "end" }));
 		}
 	}
 
-	openBtn?.addEventListener("click", () => {
-		modal.showModal();
+	function resetUi() {
+		talkStore.setState({ transcript: "", reply: "", permission: "" });
+		audioEl.removeAttribute("src");
+		audioEl.style.display = "none";
+		setSpeaking(false);
+		setBotState("standing by");
+		setMicState("idle");
+		setStatusLive(false);
+		talkStore.setState({ startDisabled: false, stopDisabled: true });
+		resetLatencies();
+	}
+
+	function openModal() {
+		talkStore.setState({ isOpen: true });
 		if (location.protocol === "file:") {
 			setStatus("This UI requires a local server (file:// breaks WebSocket + asset paths). Run: npm run preview");
-		} else {
-			setStatus("Press Start, speak, then Stop.");
 		}
+	}
+
+	window.addEventListener("talk:open", openModal);
+	window.addEventListener("talk:close", () => talkStore.setState({ isOpen: false }));
+
+	document.addEventListener("click", (event) => {
+		const target = event.target.closest("[data-talk-open]");
+		if (!target) return;
+		event.preventDefault();
+		window.dispatchEvent(new CustomEvent("talk:open"));
 	});
 
 	closeBtn?.addEventListener("click", () => {
+		talkStore.setState({ isOpen: false });
 		modal.close();
+	});
+
+	modal.addEventListener("close", () => {
+		talkStore.setState({ isOpen: false });
+	});
+
+	resetBtn?.addEventListener("click", () => {
+		resetUi();
+		setStatus("Ready for another round.");
 	});
 
 	startBtn?.addEventListener("click", async () => {
@@ -218,23 +566,27 @@
 			setStatus("Run this page via a local server (npm run preview). file:// mode can’t connect to ws://localhost:8000");
 			return;
 		}
-		startBtn.disabled = true;
-		stopBtn.disabled = false;
+		talkStore.setState({ startDisabled: true, stopDisabled: false });
 		setStatus("requesting mic…");
 		try {
 			await startRecording();
+			talkStore.setState({ permission: "" });
 			setStatus("recording…");
+			setBotState("listening");
 		} catch (e) {
+			talkStore.setState({ permission: "Microphone access denied. Enable permissions and try again." });
 			setStatus("mic/WS error — check permissions + backend on :8000");
-			startBtn.disabled = false;
-			stopBtn.disabled = true;
+			talkStore.setState({ startDisabled: false, stopDisabled: true });
+			setMicState("blocked");
+			setStatusLive(false);
 		}
 	});
 
 	stopBtn?.addEventListener("click", async () => {
-		stopBtn.disabled = true;
+		talkStore.setState({ stopDisabled: true });
 		setStatus("stopping…");
+		setBotState("thinking");
 		await stopRecording();
-		startBtn.disabled = false;
+		talkStore.setState({ startDisabled: false });
 	});
 </script>

@@ -90,15 +90,27 @@ class OpenAIPipecatTTSProvider(TTSProvider):
 
 		pcm_parts: list[bytes] = []
 		async for frame in self._svc.run_tts(text):
-			# Depending on Pipecat frame type, the PCM payload can be exposed under
-			# different attribute names.
-			data = (
-				getattr(frame, "audio", None)
-				or getattr(frame, "data", None)
-				or getattr(frame, "chunk", None)
-			)
+			data = self._frame_to_pcm(frame)
 			if data:
 				pcm_parts.append(data)
 		pcm = b"".join(pcm_parts)
 		wav = pcm16_mono_to_wav_bytes(pcm, sample_rate_hz=self.output_sample_rate_hz)
 		return TTSResult(wav_bytes=wav, mime="audio/wav")
+
+	async def stream_pcm(self, text: str):
+		"""Yield PCM16 mono chunks for low-latency playback."""
+		await self._ensure_setup()
+		async for frame in self._svc.run_tts(text):
+			data = self._frame_to_pcm(frame)
+			if data:
+				yield data
+
+	@staticmethod
+	def _frame_to_pcm(frame) -> Optional[bytes]:
+		# Depending on Pipecat frame type, the PCM payload can be exposed under
+		# different attribute names.
+		return (
+			getattr(frame, "audio", None)
+			or getattr(frame, "data", None)
+			or getattr(frame, "chunk", None)
+		)

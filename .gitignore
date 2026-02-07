@@ -20,3 +20,12 @@ backend/.venv_smoke/
 backend/app/__pycache__/
 backend/talk_reply.wav
 site/analysis/data/cache/
+
+# Codex
+.codex/
+
+# Local scratch
+_tmp/
+
+# Python packaging artifacts
+*.egg-info/
