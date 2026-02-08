@@ -1,50 +1,89 @@
 {
-  "source": "TouchArcade (links to App Store media via mzstatic)",
+  "source": "TouchArcade (seeded from Deezy developer apps carousel)",
   "captured": "2026-02-08",
   "games": [
     {
       "name": "Shooton",
       "slug": "shooton",
       "toucharcade": "https://toucharcade.com/games/shooton",
-      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1061481007?mt=8",
       "screenshots": [
         "/assets/games/shooton/shot1.jpg",
         "/assets/games/shooton/shot2.jpg"
-      ],
-      "blurb": "Tap-to-shoot arcade: hit every shot, miss once and it’s game over."
-    },
-    {
-      "name": "UpJump",
-      "slug": "upjump",
-      "toucharcade": "https://toucharcade.com/games/upjump",
-      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1031851835?mt=8",
-      "screenshots": [
-        "/assets/games/upjump/shot1.jpg",
-        "/assets/games/upjump/shot2.jpg"
-      ],
-      "blurb": "Endless vertical dodger: pick left/right jumps and survive moving obstacles."
-    },
-    {
-      "name": "Deezy",
-      "slug": "deezy",
-      "toucharcade": "https://toucharcade.com/games/deezy",
-      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1190124010?mt=8",
-      "screenshots": [
-        "/assets/games/deezy/shot1.jpg",
-        "/assets/games/deezy/shot2.jpg"
-      ],
-      "blurb": "Color-match reflex game: rotate and match circles; every streak ramps difficulty."
+      ]
     },
     {
       "name": "Squish em",
       "slug": "squish-em",
       "toucharcade": "https://toucharcade.com/games/squish-em",
-      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1069741150?mt=8",
       "screenshots": [
         "/assets/games/squish-em/shot1.jpg",
         "/assets/games/squish-em/shot2.jpg"
-      ],
-      "blurb": "Dodge enemies and squash them by pushing walls."
+      ]
+    },
+    {
+      "name": "Grab the Colors",
+      "slug": "grab-the-colors",
+      "toucharcade": "https://toucharcade.com/games/grab-the-colors",
+      "screenshots": [
+        "/assets/games/grab-the-colors/shot1.jpg",
+        "/assets/games/grab-the-colors/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Flippy ball - Poke Flip",
+      "slug": "flippy-ball-poke-flip",
+      "toucharcade": "https://toucharcade.com/games/flippy-ball-poke-flip",
+      "screenshots": [
+        "/assets/games/flippy-ball-poke-flip/shot1.jpg",
+        "/assets/games/flippy-ball-poke-flip/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Cashed out",
+      "slug": "cashed-out",
+      "toucharcade": "https://toucharcade.com/games/cashed-out",
+      "screenshots": [
+        "/assets/games/cashed-out/shot1.jpg",
+        "/assets/games/cashed-out/shot2.jpg"
+      ]
+    },
+    {
+      "name": "i-Skydive",
+      "slug": "i-skydive",
+      "toucharcade": "https://toucharcade.com/games/i-skydive",
+      "screenshots": []
+    },
+    {
+      "name": "Star Invader",
+      "slug": "star-invader",
+      "toucharcade": "https://toucharcade.com/games/star-invader",
+      "screenshots": []
+    },
+    {
+      "name": "UpJump",
+      "slug": "upjump",
+      "toucharcade": "https://toucharcade.com/games/upjump",
+      "screenshots": [
+        "/assets/games/upjump/shot1.jpg",
+        "/assets/games/upjump/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Neon Escape",
+      "slug": "neon-escape",
+      "toucharcade": "https://toucharcade.com/games/neon-escape",
+      "screenshots": [
+        "/assets/games/neon-escape/shot1.jpg",
+        "/assets/games/neon-escape/shot2.jpg"
+      ]
+    },
+    {
+      "name": "The Super 2048",
+      "slug": "the-super-2048",
+      "toucharcade": "https://toucharcade.com/games/the-super-2048",
+      "screenshots": [
+        "/assets/games/the-super-2048/shot1.jpg"
+      ]
     }
   ]
 }
