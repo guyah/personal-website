@@ -1,6 +1,4 @@
 ---
-import TalkToGuy from "../components/TalkToGuy.astro";
-
 export type Props = {
 	title?: string;
 	description?: string;
@@ -113,31 +111,6 @@ const {
 				flex-wrap: wrap;
 				justify-content: flex-end;
 			}
-
-			.talk-pill {
-				border: 1px solid rgba(47, 142, 229, 0.35);
-				background: rgba(47, 142, 229, 0.10);
-				padding: 0.25rem 0.55rem;
-				border-radius: 999px;
-				font-weight: 700;
-			}
-			.talk-pill:hover { opacity: 0.9; }
-
-			.btn {
-				border: 1px solid rgba(47, 142, 229, 0.35);
-				background: transparent;
-				padding: 0.55rem 0.95rem;
-				border-radius: 0.7rem;
-				cursor: pointer;
-				color: var(--text-color);
-				font-weight: 600;
-				letter-spacing: 0.01em;
-				transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-			}
-			.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(47, 142, 229, 0.15); }
-			.btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
-			.btn--primary { background: var(--accent-color); color: #ffffff; }
-			.btn--ghost { background: transparent; border-style: dashed; }
 
 			h1,
 			h2,
@@ -252,7 +225,6 @@ const {
 					<a href="/about">About</a>
 					<a href="/blog">Blog</a>
 					<a href="/rss.xml">RSS</a>
-					<a href="/#talk" class="talk-pill" data-talk-open>Talk</a>
 				</nav>
 			</header>
 
@@ -266,6 +238,5 @@ const {
 			</footer>
 		</div>
 
-		<TalkToGuy />
 	</body>
 </html>

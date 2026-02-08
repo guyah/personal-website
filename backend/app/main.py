@@ -1,6 +1,4 @@
-from fastapi import FastAPI, WebSocket
-
-from .voice.ws import talk_websocket_handler
+from fastapi import FastAPI
 
 from . import models  # noqa: F401
 from .database import Base, engine
@@ -17,7 +15,3 @@ def on_startup() -> None:
 def health() -> dict[str, str]:
 	return {"status": "ok"}
 
-
-@app.websocket("/ws/talk")
-async def ws_talk(websocket: WebSocket):
-	await talk_websocket_handler(websocket)
