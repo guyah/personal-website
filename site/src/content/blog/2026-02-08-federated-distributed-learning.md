@@ -51,3 +51,7 @@ This architecture makes it possible to train across many nodes even when each no
 ## Links
 
 - Repo: https://github.com/guyah/Federated-and-Distributed-Learning
+
+## References
+
+- FedAvg paper: "Communication-Efficient Learning of Deep Networks from Decentralized Data" (McMahan et al.) https://arxiv.org/abs/1602.05629
