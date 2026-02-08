@@ -43,4 +43,10 @@ The workshop lowers the entry barrier and creates a clear, repeatable path to ge
 
 ## Links
 
-- Repo: `https://github.com/guyah/ComputerVisionWorkshop`
+- Repo: https://github.com/guyah/ComputerVisionWorkshop
+
+## References
+
+- OpenCV official docs, Python setup on Ubuntu: https://docs.opencv.org/3.4.1/d2/de6/tutorial_py_setup_in_ubuntu.html
+- Practical install guide (Mac): https://www.pyimagesearch.com/2016/12/19/install-opencv-3-on-macos-with-homebrew-the-easy-way/
+- opencv-python (PyPI): https://pypi.org/project/opencv-python/
