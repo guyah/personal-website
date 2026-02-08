@@ -1,16 +1,45 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog"))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+	year: "numeric",
+	month: "short",
+	day: "numeric",
+});
 ---
 
 <Layout title="Guy Abi Hanna" description="AI engineering, voice agents, and crisp systems.">
 	<h1>Hi, I’m Guy.</h1>
 	<p class="lede">
-		I’m a Senior AI Engineer in Paris, focused on real-time voice agents and production-grade systems
-		around STT, LLMs, and TTS.
+		I design and ship low-latency voice agents and AI systems that feel fast, predictable, and
+		human.
 	</p>
 	<p>
-		This site is intentionally small: a home for notes, experiments, and the occasional deep-dive.
+		I work across STT, LLM orchestration, and TTS with a bias for measurement, tail latency, and
+		durable infrastructure.
 	</p>
+	<p class="small"><strong>Now:</strong> building real-time voice stacks and writing about latency.</p>
+	<div class="section">
+		<p class="section-title">Latest writing</p>
+		{posts.length === 0 ? (
+			<p class="small">No posts yet.</p>
+		) : (
+			<ul>
+				{posts.map((post) => (
+					<li>
+						<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+						<span class="small"> · {formatter.format(post.data.pubDate)}</span>
+					</li>
+				))}
+			</ul>
+		)}
+	</div>
 	<div class="section">
 		<p class="section-title">Quick links</p>
 		<ul>
