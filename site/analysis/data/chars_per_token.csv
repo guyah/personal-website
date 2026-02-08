@@ -1,5 +1,0 @@
-sample_id,chars,ok,status,took_ms,input_tokens,chars_per_token
-0,12,ok,200,715.79,9,1.333
-1,62,ok,200,738.41,17,3.647
-2,144,ok,200,916.9,43,3.349
-3,49,ok,200,901.21,21,2.333

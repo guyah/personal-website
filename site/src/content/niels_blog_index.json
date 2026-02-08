@@ -1,0 +1,254 @@
+[
+  {
+    "title": "Building effective enterprise agents",
+    "href": "https://www.bcg.com/assets/2025/building-effective-enterprise-agents.pdf",
+    "url": "https://www.bcg.com/assets/2025/building-effective-enterprise-agents.pdf",
+    "publishedText": "Published on BCG on Nov 28, 2025",
+    "isExternal": true
+  },
+  {
+    "title": "Travel planning with Comet",
+    "href": "travel-planning-with-comet.html",
+    "url": "https://niels.degran.de/blog/travel-planning-with-comet.html",
+    "publishedText": "Published on Oct 7, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Claude Code 2.0",
+    "href": "claude-code-2-0.html",
+    "url": "https://niels.degran.de/blog/claude-code-2-0.html",
+    "publishedText": "Published on Oct 7, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Rehosting",
+    "href": "rehosting.html",
+    "url": "https://niels.degran.de/blog/rehosting.html",
+    "publishedText": "Published on Sep 12, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Incident agent",
+    "href": "incident-agent.html",
+    "url": "https://niels.degran.de/blog/incident-agent.html",
+    "publishedText": "Published on Aug 4, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "RAG explainer",
+    "href": "https://www.bcg.com/capabilities/artificial-intelligence/retrieval-augmented-generation",
+    "url": "https://www.bcg.com/capabilities/artificial-intelligence/retrieval-augmented-generation",
+    "publishedText": "Published on BCG on Aug 4, 2025",
+    "isExternal": true
+  },
+  {
+    "title": "Put AI to work",
+    "href": "https://www.bcg.com/publications/2025/put-ai-to-work-faster-using-model-context-protocol",
+    "url": "https://www.bcg.com/publications/2025/put-ai-to-work-faster-using-model-context-protocol",
+    "publishedText": "Published on BCG on Aug 1, 2025",
+    "isExternal": true
+  },
+  {
+    "title": "Extend Darwin Gödel machines",
+    "href": "extend-darwin-godel-machines.html",
+    "url": "https://niels.degran.de/blog/extend-darwin-godel-machines.html",
+    "publishedText": "Published on Jul 31, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Agent mesh",
+    "href": "agent-mesh.html",
+    "url": "https://niels.degran.de/blog/agent-mesh.html",
+    "publishedText": "Published on Jul 31, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Agent builders",
+    "href": "agent-builders.html",
+    "url": "https://niels.degran.de/blog/agent-builders.html",
+    "publishedText": "Published on Jul 22, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Computer use, GPA & legacy",
+    "href": "computer-use-gpa-legacy.html",
+    "url": "https://niels.degran.de/blog/computer-use-gpa-legacy.html",
+    "publishedText": "Published on Jul 7, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Misbehaving LLMs",
+    "href": "misbehaving-llms.html",
+    "url": "https://niels.degran.de/blog/misbehaving-llms.html",
+    "publishedText": "Published on Jun 27, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Reviewing generated code",
+    "href": "reviewing-generated-code.html",
+    "url": "https://niels.degran.de/blog/reviewing-generated-code.html",
+    "publishedText": "Published on Jun 26, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Gemini Diffusion",
+    "href": "gemini-diffusion.html",
+    "url": "https://niels.degran.de/blog/gemini-diffusion.html",
+    "publishedText": "Published on May 30, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Personal agents",
+    "href": "personal-agents.html",
+    "url": "https://niels.degran.de/blog/personal-agents.html",
+    "publishedText": "Published on May 26, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Adapting to GenEng",
+    "href": "adapt-geneng.html",
+    "url": "https://niels.degran.de/blog/adapt-geneng.html",
+    "publishedText": "Published on May 26, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "MCPify",
+    "href": "mcpify.html",
+    "url": "https://niels.degran.de/blog/mcpify.html",
+    "publishedText": "Published on May 22, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "make initialize_blog",
+    "href": "make-initialize-blog.html",
+    "url": "https://niels.degran.de/blog/make-initialize-blog.html",
+    "publishedText": "Published on May 20, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Herding agents",
+    "href": "herding-agents.html",
+    "url": "https://niels.degran.de/blog/herding-agents.html",
+    "publishedText": "Published on May 20, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Codex vs. Jules",
+    "href": "codex-vs-jules.html",
+    "url": "https://niels.degran.de/blog/codex-vs-jules.html",
+    "publishedText": "Published on May 20, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Spectrum of coding agents",
+    "href": "spectrum-of-coding-agents.html",
+    "url": "https://niels.degran.de/blog/spectrum-of-coding-agents.html",
+    "publishedText": "Published on May 14, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Robust RAG",
+    "href": "robust-rag.html",
+    "url": "https://niels.degran.de/blog/robust-rag.html",
+    "publishedText": "Published on May 14, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "A(gent)ware",
+    "href": "agentware.html",
+    "url": "https://niels.degran.de/blog/agentware.html",
+    "publishedText": "Published on May 13, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Agent management",
+    "href": "agent-management.html",
+    "url": "https://niels.degran.de/blog/agent-management.html",
+    "publishedText": "Published on May 5, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Coding agent dance-off",
+    "href": "coding-agent-dance-off.html",
+    "url": "https://niels.degran.de/blog/coding-agent-dance-off.html",
+    "publishedText": "Published on Apr 29, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Delivering on AI ROI",
+    "href": "https://www.snowflake.com/webinars/thought-leadership/delivering-on-ai-roi-ensure-your-story-is-fact-not-fiction/",
+    "url": "https://www.snowflake.com/webinars/thought-leadership/delivering-on-ai-roi-ensure-your-story-is-fact-not-fiction/",
+    "publishedText": "Published on Snowflake on Apr 23, 2025",
+    "isExternal": true
+  },
+  {
+    "title": "AI Agents, and the MCP",
+    "href": "https://www.linkedin.com/posts/bcg-platinion_ai-agents-and-the-model-context-protocol-activity-7330864988070309891-zhCZ",
+    "url": "https://www.linkedin.com/posts/bcg-platinion_ai-agents-and-the-model-context-protocol-activity-7330864988070309891-zhCZ",
+    "publishedText": "Published on LinkedIn on Apr 21, 2025",
+    "isExternal": true
+  },
+  {
+    "title": "Generative UI & beyond",
+    "href": "ui-and-beyond.html",
+    "url": "https://niels.degran.de/blog/ui-and-beyond.html",
+    "publishedText": "Published on Apr 1, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Language push down",
+    "href": "language-push-down.html",
+    "url": "https://niels.degran.de/blog/language-push-down.html",
+    "publishedText": "Published on Feb 24, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Agent dark mode",
+    "href": "agent-dark-mode.html",
+    "url": "https://niels.degran.de/blog/agent-dark-mode.html",
+    "publishedText": "Published on Feb 16, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "When to multi-agent",
+    "href": "multi-agent.html",
+    "url": "https://niels.degran.de/blog/multi-agent.html",
+    "publishedText": "Published on Jan 17, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Levels of workflow automation",
+    "href": "workflows.html",
+    "url": "https://niels.degran.de/blog/workflows.html",
+    "publishedText": "Published on Jan 16, 2025",
+    "isExternal": false
+  },
+  {
+    "title": "Recycle workflows",
+    "href": "cycle.html",
+    "url": "https://niels.degran.de/blog/cycle.html",
+    "publishedText": "Published on Dec 24, 2024",
+    "isExternal": false
+  },
+  {
+    "title": "Empower you workforce...",
+    "href": "https://www.linkedin.com/pulse/empower-your-workforce-identify-industry-specific-daniel-sack",
+    "url": "https://www.linkedin.com/pulse/empower-your-workforce-identify-industry-specific-daniel-sack",
+    "publishedText": "Published on LinkedIn on Jun 13, 2023",
+    "isExternal": true
+  },
+  {
+    "title": "Airflow blueprint",
+    "href": "https://medium.com/bcggamma/airtunnel-a-blueprint-for-workflow-orchestration-using-airflow-173054b458c3",
+    "url": "https://medium.com/bcggamma/airtunnel-a-blueprint-for-workflow-orchestration-using-airflow-173054b458c3",
+    "publishedText": "Published on Medium on Dec 5, 2019",
+    "isExternal": true
+  },
+  {
+    "title": "Predict BTC price",
+    "href": "https://www.emerald.com/insight/content/doi/10.1108/jrf-06-2017-0092/full/html",
+    "url": "https://www.emerald.com/insight/content/doi/10.1108/jrf-06-2017-0092/full/html",
+    "publishedText": "Published on Emerald on Dec 1, 2018",
+    "isExternal": true
+  }
+]

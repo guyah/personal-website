@@ -1,5 +1,0 @@
-sample_id,chars,text,ok,status,took_ms,duration_s
-0,19,One short sentence.,ok,200,662.67,1.704
-1,75,This is a slightly longer sentence to measure audio duration more reliably.,ok,200,1379.42,5.208
-2,133,"Here is a paragraph-length sample. It should take a few seconds to speak, and it helps estimate how duration scales with text length.",ok,200,1739.23,8.304
-3,78,Arabic sample: مرحبا! كيفك اليوم؟ هذا مثال قصير لقياس مدة تحويل النص إلى كلام.,ok,200,1930.73,8.616
