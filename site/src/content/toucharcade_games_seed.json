@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "shooton",
+    "name": "Shooton",
+    "url": "https://toucharcade.com/games/shooton"
+  },
+  {
+    "slug": "squish-em",
+    "name": "Squish em",
+    "url": "https://toucharcade.com/games/squish-em"
+  },
+  {
+    "slug": "grab-the-colors",
+    "name": "Grab the Colors",
+    "url": "https://toucharcade.com/games/grab-the-colors"
+  },
+  {
+    "slug": "flippy-ball-poke-flip",
+    "name": "Flippy ball - Poke Flip",
+    "url": "https://toucharcade.com/games/flippy-ball-poke-flip"
+  },
+  {
+    "slug": "cashed-out",
+    "name": "Cashed out",
+    "url": "https://toucharcade.com/games/cashed-out"
+  },
+  {
+    "slug": "i-skydive",
+    "name": "i-Skydive",
+    "url": "https://toucharcade.com/games/i-skydive"
+  },
+  {
+    "slug": "star-invader",
+    "name": "Star Invader",
+    "url": "https://toucharcade.com/games/star-invader"
+  },
+  {
+    "slug": "upjump",
+    "name": "UpJump",
+    "url": "https://toucharcade.com/games/upjump"
+  },
+  {
+    "slug": "neon-escape",
+    "name": "Neon Escape",
+    "url": "https://toucharcade.com/games/neon-escape"
+  },
+  {
+    "slug": "the-super-2048",
+    "name": "The Super 2048",
+    "url": "https://toucharcade.com/games/the-super-2048"
+  }
+]

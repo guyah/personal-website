@@ -1,0 +1,28 @@
+---
+const { rows = [] } = Astro.props;
+---
+
+{rows?.length ? (
+	<table class="numbers">
+		<tbody>
+			{rows.map((r) => (
+				<tr>
+					<td class="k">{r[0]}</td>
+					<td class="v">{r[1]}</td>
+				</tr>
+			))}
+		</tbody>
+	</table>
+) : null}
+
+<style>
+	.numbers {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1rem 0 1.5rem;
+		font-size: 0.98rem;
+	}
+	.numbers td { padding: 0.45rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.numbers .k { width: 38%; color: rgba(255,255,255,0.75); }
+	.numbers .v { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+</style>

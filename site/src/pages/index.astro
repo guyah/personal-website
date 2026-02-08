@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog"))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+	year: "numeric",
+	month: "short",
+	day: "numeric",
+});
+---
+
+<Layout title="Guy Abi Hanna" description="Builder. Senior AI Engineer at BCG X. Voice and GenAI in production.">
+	<h1>Hi, I'm Guy.</h1>
+	<p class="lede">
+		I build unconventional things the practical way: ship first, learn fast, then make it real.
+	</p>
+	<p>
+		Today I'm a Senior AI Engineer at BCG X, where I design and build voice and GenAI products from
+		prototype to production.
+	</p>
+	<p>
+		Before that I shipped 10+ hyper-casual mobile games in the Flappy Bird era, and later worked across IoT, computer vision, and applied ML.
+	</p>
+
+	<div class="section">
+		<p class="section-title">Highlights</p>
+		<ul>
+			<li>Senior AI Engineer at BCG X (formerly Gamma)</li>
+			<li>Founding engineer on Genie, an agentic platform and one of the successful offerings in BCG X</li>
+			<li>Deployed Genie across companies in healthcare, energy, and shipping/logistics</li>
+			<li>
+				Collaborated with multiple big-tech companies through my work at BCG (including LLM model
+				providers) to build AI accelerators and AI use cases
+			</li>
+			<li>Background across IoT, computer vision, and applied ML</li>
+			<li>Indie games: 10+ shipped, monetized with AdMob (banner + interstitial)</li>
+		</ul>
+	</div>
+
+	<p class="small">
+		Main CTA: <a href="https://www.linkedin.com/in/guyabihanna">follow me on LinkedIn</a>.
+	</p>
+
+	<div class="section">
+		<p class="section-title">Latest writing</p>
+		{posts.length === 0 ? (
+			<p class="small">No posts yet.</p>
+		) : (
+			<ul>
+				{posts.map((post) => (
+					<li>
+						<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+						<span class="small"> · {formatter.format(post.data.pubDate)}</span>
+					</li>
+				))}
+			</ul>
+		)}
+	</div>
+
+	<div class="section">
+		<p class="section-title">Links</p>
+		<ul>
+			<li><a href="/about">About</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="https://github.com/guyah">GitHub</a></li>
+			<li><a href="https://www.linkedin.com/in/guyabihanna">LinkedIn</a></li>
+		</ul>
+	</div>
+</Layout>

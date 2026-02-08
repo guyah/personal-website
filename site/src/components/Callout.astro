@@ -1,0 +1,19 @@
+---
+const { title = "", body = "" } = Astro.props;
+---
+
+<div class="callout">
+	{title ? <p class="callout__title">{title}</p> : null}
+	{body ? <p class="small">{body}</p> : null}
+</div>
+
+<style>
+	.callout {
+		margin: 1.25rem 0;
+		padding: 0.85rem 1rem;
+		border: 1px solid rgba(255,255,255,0.12);
+		border-radius: 0.8rem;
+		background: rgba(255,255,255,0.03);
+	}
+	.callout__title { margin: 0 0 0.35rem; font-weight: 800; }
+</style>

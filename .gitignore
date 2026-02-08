@@ -1,0 +1,31 @@
+# Private local research (not pushed)
+_private/
+research/
+
+# OS
+.DS_Store
+# Dependencies
+site/node_modules/
+site/dist/
+
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+*.wav
+.venv/
+.venv*/
+venv/
+backend/.venv_smoke/
+backend/app/__pycache__/
+backend/talk_reply.wav
+site/analysis/data/cache/
+
+# Codex
+.codex/
+
+# Local scratch
+_tmp/
+
+# Python packaging artifacts
+*.egg-info/

@@ -1,0 +1,23 @@
+name: Idea
+description: Capture a new idea for the personal site.
+title: "idea: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: raw
+    attributes:
+      label: Raw idea
+      description: What is it? Keep it short.
+      placeholder: "e.g., Add /now page with current focus"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+      description: What outcome does this drive?
+  - type: textarea
+    id: smallest
+    attributes:
+      label: Smallest test / next step
+      description: What's the smallest thing to validate or ship?

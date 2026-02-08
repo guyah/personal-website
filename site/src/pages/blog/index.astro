@@ -1,0 +1,48 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog"))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+	year: "numeric",
+	month: "short",
+	day: "numeric",
+});
+---
+
+<Layout title="Blog, Guy Abi Hanna" description="Writing and notes">
+	<h1>Blog</h1>
+	<p class="lede">
+		A brain dump of things I'm building, things I learned, and ideas that feel worth sharing.
+	</p>
+
+	{posts.length === 0 ? (
+		<p class="small">No posts yet.</p>
+	) : (
+		<div class="section">
+			<div class="list">
+				{posts.map((post) => {
+					const tags = post.data.tags ?? [];
+					const icon = post.data.icon ?? "→";
+
+					return (
+						<article class="list-item">
+							<a class="title" href={`/blog/${post.slug}`}>
+								<span aria-hidden="true">{icon}</span>
+								<span>{post.data.title}</span>
+							</a>
+							<div class="meta">
+								{formatter.format(post.data.pubDate)}
+								{tags.length ? ` · ${tags.join(" / ")}` : ""}
+							</div>
+							<p class="small description">{post.data.description}</p>
+						</article>
+					);
+				})}
+			</div>
+		</div>
+	)}
+</Layout>

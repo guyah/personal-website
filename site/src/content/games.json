@@ -1,0 +1,89 @@
+{
+  "source": "TouchArcade (seeded from Deezy developer apps carousel)",
+  "captured": "2026-02-08",
+  "games": [
+    {
+      "name": "Shooton",
+      "slug": "shooton",
+      "toucharcade": "https://toucharcade.com/games/shooton",
+      "screenshots": [
+        "/assets/games/shooton/shot1.jpg",
+        "/assets/games/shooton/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Squish em",
+      "slug": "squish-em",
+      "toucharcade": "https://toucharcade.com/games/squish-em",
+      "screenshots": [
+        "/assets/games/squish-em/shot1.jpg",
+        "/assets/games/squish-em/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Grab the Colors",
+      "slug": "grab-the-colors",
+      "toucharcade": "https://toucharcade.com/games/grab-the-colors",
+      "screenshots": [
+        "/assets/games/grab-the-colors/shot1.jpg",
+        "/assets/games/grab-the-colors/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Flippy ball - Poke Flip",
+      "slug": "flippy-ball-poke-flip",
+      "toucharcade": "https://toucharcade.com/games/flippy-ball-poke-flip",
+      "screenshots": [
+        "/assets/games/flippy-ball-poke-flip/shot1.jpg",
+        "/assets/games/flippy-ball-poke-flip/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Cashed out",
+      "slug": "cashed-out",
+      "toucharcade": "https://toucharcade.com/games/cashed-out",
+      "screenshots": [
+        "/assets/games/cashed-out/shot1.jpg",
+        "/assets/games/cashed-out/shot2.jpg"
+      ]
+    },
+    {
+      "name": "i-Skydive",
+      "slug": "i-skydive",
+      "toucharcade": "https://toucharcade.com/games/i-skydive",
+      "screenshots": []
+    },
+    {
+      "name": "Star Invader",
+      "slug": "star-invader",
+      "toucharcade": "https://toucharcade.com/games/star-invader",
+      "screenshots": []
+    },
+    {
+      "name": "UpJump",
+      "slug": "upjump",
+      "toucharcade": "https://toucharcade.com/games/upjump",
+      "screenshots": [
+        "/assets/games/upjump/shot1.jpg",
+        "/assets/games/upjump/shot2.jpg"
+      ]
+    },
+    {
+      "name": "Neon Escape",
+      "slug": "neon-escape",
+      "toucharcade": "https://toucharcade.com/games/neon-escape",
+      "screenshots": [
+        "/assets/games/neon-escape/shot1.jpg",
+        "/assets/games/neon-escape/shot2.jpg"
+      ]
+    },
+    {
+      "name": "The Super 2048",
+      "slug": "the-super-2048",
+      "toucharcade": "https://toucharcade.com/games/the-super-2048",
+      "screenshots": [
+        "/assets/games/the-super-2048/shot1.jpg"
+      ]
+    }
+  ]
+}

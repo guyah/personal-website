@@ -1,0 +1,20 @@
+---
+const { title = "Insights", items = [] } = Astro.props;
+---
+
+{items?.length ? (
+	<section class="insights">
+		<h2>{title}</h2>
+		<ul>
+			{items.map((x) => (
+				<li>{x}</li>
+			))}
+		</ul>
+	</section>
+) : null}
+
+<style>
+	.insights { margin: 1.5rem 0; }
+	.insights ul { padding-left: 1.1rem; }
+	.insights li { margin: 0.3rem 0; }
+</style>

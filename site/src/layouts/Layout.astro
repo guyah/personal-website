@@ -1,0 +1,328 @@
+---
+export type Props = {
+	title?: string;
+	description?: string;
+};
+
+const {
+	title = "Guy Abi Hanna",
+	description = "AI engineering, agents, and building clean, durable systems.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style is:global>
+			:root {
+				color-scheme: light dark;
+				--font-serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype",
+					"Book Antiqua", Palatino, serif;
+				--font-sans: "Source Sans 3", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				--font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+					Consolas, "Liberation Mono", "Courier New", monospace;
+				--color-bg: #f3efe6;
+				--color-bg-soft: #fbf7f0;
+				--color-text: #1f1b16;
+				--color-muted: #5e5547;
+				--color-accent: #b35a2b;
+				--color-border: #d8cfbf;
+				--color-card: #faf6ee;
+				--max-width: 760px;
+				--gutter: 28px;
+				--radius: 12px;
+				--shadow: 0 12px 30px rgba(32, 26, 18, 0.08);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--color-bg: #141210;
+					--color-bg-soft: #1b1815;
+					--color-text: #f1e9dd;
+					--color-muted: #b6a999;
+					--color-accent: #f0a06b;
+					--color-border: #2c2721;
+					--color-card: #1a1714;
+					--shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+				}
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: var(--font-sans);
+				font-size: 18px;
+				line-height: 1.75;
+				background:
+					radial-gradient(900px 380px at 10% -10%, rgba(255, 255, 255, 0.45),
+						transparent 60%),
+					var(--color-bg);
+				color: var(--color-text);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				body {
+					background:
+						radial-gradient(800px 320px at 15% -20%, rgba(255, 255, 255, 0.06),
+							transparent 60%),
+						var(--color-bg);
+				}
+			}
+
+			.page {
+				max-width: var(--max-width);
+				margin: 52px auto 84px;
+				padding: 0 var(--gutter);
+			}
+
+			@media (max-width: 640px) {
+				body {
+					font-size: 17px;
+				}
+
+				.page {
+					margin: 32px auto 64px;
+					padding: 0 20px;
+				}
+			}
+
+			a {
+				color: var(--color-accent);
+				text-decoration: none;
+				border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+				transition: color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+			}
+
+			a:hover {
+				color: var(--color-text);
+				border-color: var(--color-text);
+				opacity: 0.9;
+			}
+
+			.nav {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 16px;
+				text-align: center;
+				padding-bottom: 20px;
+				margin-bottom: 36px;
+				border-bottom: 1px solid var(--color-border);
+			}
+
+			.nav .brand {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				align-items: center;
+			}
+
+			.nav .name {
+				font-family: var(--font-serif);
+				font-size: 1.7rem;
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				color: var(--color-text);
+				border-bottom: none;
+			}
+
+			.nav .name:hover {
+				color: var(--color-accent);
+			}
+
+			.nav .meta {
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.26em;
+				color: var(--color-muted);
+			}
+
+			.nav .links {
+				display: flex;
+				gap: 18px;
+				flex-wrap: wrap;
+				justify-content: center;
+				font-size: 0.74rem;
+				letter-spacing: 0.32em;
+				text-transform: uppercase;
+			}
+
+			.nav .links a {
+				color: var(--color-text);
+				border-bottom: none;
+				opacity: 0.7;
+			}
+
+			.nav .links a:hover {
+				color: var(--color-accent);
+				opacity: 1;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4 {
+				font-family: var(--font-serif);
+				color: var(--color-text);
+				font-weight: 600;
+				line-height: 1.2;
+				margin: 0 0 16px 0;
+			}
+
+			h1 {
+				font-size: clamp(2.2rem, 3.2vw, 3rem);
+				letter-spacing: 0.01em;
+			}
+
+			h2 {
+				font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+				margin-top: 32px;
+			}
+
+			h3 {
+				font-size: 1.35rem;
+				margin-top: 24px;
+			}
+
+			p {
+				margin: 0 0 16px 0;
+			}
+
+			article > h1 {
+				margin-top: 0;
+			}
+
+			.small {
+				color: var(--color-muted);
+				font-size: 0.95rem;
+			}
+
+			.lede {
+				font-size: 1.05rem;
+				color: var(--color-muted);
+				margin-bottom: 20px;
+			}
+
+			.section-title {
+				font-size: 0.72rem;
+				text-transform: uppercase;
+				letter-spacing: 0.3em;
+				color: var(--color-muted);
+				margin: 0 0 12px;
+			}
+
+			.section {
+				margin: 28px 0 0;
+				padding-top: 16px;
+				border-top: 1px solid var(--color-border);
+			}
+
+			.list {
+				margin-top: 24px;
+				display: grid;
+				gap: 18px;
+			}
+
+			.list-item {
+				padding: 18px 20px;
+				background: var(--color-card);
+				border: 1px solid var(--color-border);
+				border-radius: var(--radius);
+				box-shadow: var(--shadow);
+			}
+
+			.list-item .title {
+				font-family: var(--font-serif);
+				font-weight: 600;
+				font-size: 1.4rem;
+				color: var(--color-text) !important;
+				display: inline-flex;
+				gap: 10px;
+				align-items: baseline;
+				border-bottom: none;
+			}
+
+			.list-item .title:hover {
+				color: var(--color-accent) !important;
+			}
+
+			.list-item .meta {
+				color: var(--color-muted);
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.2em;
+			}
+
+			.list-item .description {
+				margin-top: 10px;
+			}
+
+			ul,
+			ol {
+				padding-left: 22px;
+				margin: 12px 0 18px;
+			}
+
+			hr {
+				border: none;
+				border-top: 1px solid var(--color-border);
+				margin: 28px 0;
+			}
+
+			.footer {
+				margin-top: 40px;
+				color: var(--color-muted);
+				font-size: 0.85rem;
+				text-align: center;
+				padding-top: 24px;
+				border-top: 1px solid var(--color-border);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="page">
+			<header class="nav">
+				<div class="brand">
+					<a class="name" href="/">Guy Abi Hanna</a>
+					<div class="meta">Senior AI Engineer · Paris</div>
+				</div>
+				<nav class="links">
+					<a href="/">Home</a>
+					<a href="/about">About</a>
+					<a href="/blog">Blog</a>
+				</nav>
+			</header>
+
+			<main>
+				<slot />
+			</main>
+
+			<footer class="footer">
+				<div>© {new Date().getFullYear()} Guy Abi Hanna</div>
+				<div class="small">Minimal by design. Built with Astro.</div>
+			</footer>
+		</div>
+	</body>
+</html>
