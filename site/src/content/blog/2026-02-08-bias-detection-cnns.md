@@ -52,3 +52,8 @@ This lab gives me a repeatable way to stress a CNN and see which signals it lean
 ## Links
 
 - GitHub: https://github.com/guyah/Bias-Detection-in-CNNs
+
+## References
+
+- CelebA paper: "Deep Learning Face Attributes in the Wild" (Liu et al.) https://arxiv.org/abs/1411.7766
+- Colored MNIST as a bias testbed shows up in multiple shortcut learning papers, for example: "Invariant Risk Minimization" (Arjovsky et al.) https://arxiv.org/abs/1907.02893
