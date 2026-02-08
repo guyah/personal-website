@@ -48,3 +48,9 @@ This project is built to help medical operators deliver fast, reliable ECG diagn
 
 - GitHub: https://github.com/guyah/Smart-ECG-diagnosis
 - Demo video: https://www.youtube.com/watch?v=r3BZmdGSI4o
+
+## References
+
+- Lebanese Red Cross (org): https://www.redcross.org.lb/
+- Electrocardiography overview (ECG basics): https://en.wikipedia.org/wiki/Electrocardiography
+- k-means clustering (used in the backend): https://en.wikipedia.org/wiki/K-means_clustering
