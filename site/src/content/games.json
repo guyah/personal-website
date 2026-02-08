@@ -1,0 +1,50 @@
+{
+  "source": "TouchArcade (links to App Store media via mzstatic)",
+  "captured": "2026-02-08",
+  "games": [
+    {
+      "name": "Shooton",
+      "slug": "shooton",
+      "toucharcade": "https://toucharcade.com/games/shooton",
+      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1061481007?mt=8",
+      "screenshots": [
+        "/assets/games/shooton/shot1.jpg",
+        "/assets/games/shooton/shot2.jpg"
+      ],
+      "blurb": "Tap-to-shoot arcade: hit every shot, miss once and it’s game over."
+    },
+    {
+      "name": "UpJump",
+      "slug": "upjump",
+      "toucharcade": "https://toucharcade.com/games/upjump",
+      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1031851835?mt=8",
+      "screenshots": [
+        "/assets/games/upjump/shot1.jpg",
+        "/assets/games/upjump/shot2.jpg"
+      ],
+      "blurb": "Endless vertical dodger: pick left/right jumps and survive moving obstacles."
+    },
+    {
+      "name": "Deezy",
+      "slug": "deezy",
+      "toucharcade": "https://toucharcade.com/games/deezy",
+      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1190124010?mt=8",
+      "screenshots": [
+        "/assets/games/deezy/shot1.jpg",
+        "/assets/games/deezy/shot2.jpg"
+      ],
+      "blurb": "Color-match reflex game: rotate and match circles; every streak ramps difficulty."
+    },
+    {
+      "name": "Squish em",
+      "slug": "squish-em",
+      "toucharcade": "https://toucharcade.com/games/squish-em",
+      "appStore": "https://toucharcade.com/link/http://itunes.apple.com/us/app/id1069741150?mt=8",
+      "screenshots": [
+        "/assets/games/squish-em/shot1.jpg",
+        "/assets/games/squish-em/shot2.jpg"
+      ],
+      "blurb": "Dodge enemies and squash them by pushing walls."
+    }
+  ]
+}
