@@ -1,36 +1,46 @@
 ---
-title: "ComputerVisionWorkshop: a practical path into computer vision"
-description: "Notes on building a workshop repo that turns computer vision basics into hands-on exercises and small projects."
+title: "ComputerVisionWorkshop: a clear on-ramp to computer vision"
+description: "A focused workshop repo that strips setup friction, teaches by building, and keeps learners shipping visible results."
 pubDate: 2026-02-08
 tags: ["computer-vision", "workshop", "education", "python"]
 icon: "📷"
 ---
 
-## TL;DR
+## Hook
 
-I built the ComputerVisionWorkshop repo as a practical, hands-on path into computer vision, focused on doing over reading.
+Computer vision feels heavy until you get your first image pipeline running. This workshop is built to get that win fast, then use it to pull the rest of the learning forward.
 
 ## Context
 
-Computer vision can feel like a wall of math, models, and scattered tutorials. I wanted a single place that reduces the setup friction and gives learners a clear path from basics to working results.
+Most beginner paths jump between math, scattered tutorials, and complex setups. I wanted a single repo that cuts the friction, keeps the scope tight, and lets people learn by doing.
 
-## What I built
+## Methodology
 
-A GitHub repo that anchors a workshop. The goal is to keep the flow tight: short explanations, runnable examples, and exercises that build on each other.
+- Start with a concrete outcome, then backfill the concepts
+- Keep the learning path linear with short steps and frequent wins
+- Favor runnable examples over long explanations
+- Make installation choices explicit so nobody gets stuck on day one
 
-## Key decisions
+## Implementation notes
 
-- Keep the scope narrow so the workshop can be finished in one focused sprint
-- Favor practical building blocks over theory first
-- Make the sequence linear so people can follow along without context switching
-- Use small, visible wins to keep momentum high
+The repo anchors on a stable baseline: OpenCV 3.3.0 with Python 2.7 and the basic OpenCV packages. Installation paths are provided per OS, including a fast install option and a clean install option when needed. This keeps the setup predictable for a workshop setting and reduces time lost to environment drift.
 
-## Lessons
+## Findings
 
-- People learn faster when the first working result lands early
-- Consistent structure beats fancy content
-- A good workshop is a product, not a pile of notes
+- The first working result changes learner momentum
+- Narrow scope beats broad coverage for a short workshop
+- A consistent structure makes the repo feel like a product, not a folder of notes
+
+## Impact
+
+The workshop lowers the entry barrier and creates a clear, repeatable path to get from zero to a working computer vision pipeline. It is designed to ship learning outcomes, not just content.
+
+## What I would do next
+
+- Add a modern Python 3 track without breaking the baseline
+- Introduce optional advanced exercises that reuse the same scaffolding
+- Capture setup issues as a troubleshooting checklist
 
 ## Links
 
-- Repo: https://github.com/guyah/ComputerVisionWorkshop
+- Repo: `https://github.com/guyah/ComputerVisionWorkshop`
