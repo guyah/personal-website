@@ -1,42 +1,52 @@
 ---
-title: "Federated and Distributed Learning from scratch"
-description: "A PyTorch project where identical workers train on local batches, send gradients to a server, and learn from an averaged update."
+title: "Federated and Distributed Learning, built from first principles"
+description: "A modular PyTorch system where identical workers compute local gradients, a server averages them, and every node learns from the shared update."
 pubDate: 2026-02-08
 tags: ["federated-learning", "pytorch", "distributed", "ml", "systems"]
 icon: "🧠"
 ---
 
-## TL;DR
+## Hook
 
-I built a small federated learning system in PyTorch. Multiple workers train on their own batches, send gradients to a server, get back an averaged gradient, and update in sync. The point was to learn the full loop and show how this scales to huge datasets with limited nodes.
+I wanted to understand federated learning at the level where every gradient has a place to go. So I built it from scratch: workers compute locally, a server averages globally, and the whole network moves forward together.
 
 ## Context
 
-I wanted a clean, modular setup to explore federated learning and distributed computation without hiding behind a big framework. The core idea is simple: keep data local, keep models identical, and learn from an aggregate signal.
+This project is about federated learning and distributed computation with a clear goal: keep data local, keep models identical, and still learn from the collective signal. The architecture needs to stay modular so it can scale to many nodes with limited compute and to datasets that are too large to sit in one place.
 
-## What I built
+## Methodology
 
-A basic federated training pipeline with a server and multiple workers:
+The training loop follows a simple, repeatable pattern:
 
-- each worker holds a local batch of samples
-- each worker runs a forward pass, then computes gradients
-- the server aggregates gradients by averaging across workers
-- workers update their parameters using the averaged gradient
+- Each worker owns a local batch of samples.
+- Each worker runs a forward pass and computes gradients.
+- Workers send gradients to a server.
+- The server averages all gradients.
+- The averaged gradient is broadcast back to every worker.
+- Each worker applies the update and continues.
 
-All models are identical but can start from different initializations. The result is training that optimizes performance across multiple data instances, not just one local shard.
+All models are identical but can start from different initializations. This keeps aggregation meaningful while allowing real-world variation between nodes.
 
-## Key decisions
+## Implementation notes
 
-- **Identical model architecture on every worker.** This keeps aggregation straightforward and makes the averaged gradient meaningful.
-- **Server-side gradient averaging.** It mirrors the classic federated learning flow and keeps workers lightweight.
-- **Modular layout.** The goal was to make the system easy to extend, not just get a single run working.
-- **PyTorch implementation.** It is the most direct way to express the compute graph and gradient flow.
+- **Identical model definitions on all workers.** Aggregation only works if every parameter lines up.
+- **Server-side gradient averaging.** The server is the single point where cross-worker state exists.
+- **Modular layout.** The goal is to extend the system, not just run a demo.
+- **PyTorch implementation.** It gives direct control over the compute graph and gradient flow.
 
-## Lessons
+## Findings
 
-- Aggregation is simple to describe but easy to get wrong in code. Getting the order of operations right matters.
-- Averaging gradients is a clean baseline that already shows how multiple data holders can collaborate.
-- Federated setups are a good fit for huge datasets, especially when each node has limited compute.
+The baseline flow works, and it maps cleanly to the conceptual story of federated learning. Gradient averaging is a minimal, understandable core that still captures the benefit of learning across multiple data holders.
+
+## Impact
+
+This architecture makes it possible to train across many nodes even when each node has limited compute and only sees a local slice of the data. It shifts the objective from local performance to collective performance across different instances of the same dataset.
+
+## What I would do next
+
+- Add stronger orchestration and failure handling for worker dropouts.
+- Explore different aggregation strategies beyond simple averaging.
+- Run controlled experiments on heterogeneous data splits.
 
 ## Links
 
