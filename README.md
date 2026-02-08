@@ -1,11 +1,9 @@
 # personal-website
 
-Minimal personal site + backend scaffold.
+Minimal personal site (Astro, static).
 
 ## Structure
 - `site/` — Astro frontend
-- `backend/` — FastAPI service (Docker only)
-- `docker-compose.yml` — Postgres + backend + optional site dev service
 
 ## Frontend (Astro)
 ```bash
@@ -14,19 +12,34 @@ npm install
 npm run dev
 ```
 
-The RSS feed uses `site/astro.config.mjs -> site`. Update it to your production domain when ready.
-
-## Backend + DB (Docker only)
+Build:
 ```bash
-docker compose up --build
+cd site
+npm run build
+npm run preview
 ```
 
-Services:
-- Postgres: `localhost:5432`
-- Backend health: `http://localhost:8000/health`
-- Site dev server (optional): `http://localhost:4321`
+## Games (screenshots)
 
-## Goals
-- Minimal, fast, content-first site
-- Blog + RSS
-- Deployed only with explicit Guy “GO”
+A few early iOS games (screenshots sourced from TouchArcade’s app pages):
+
+### Shooton
+- App page: https://toucharcade.com/games/shooton
+
+<img src="site/public/assets/games/shooton/shot1.jpg" width="240" /> <img src="site/public/assets/games/shooton/shot2.jpg" width="240" />
+
+### UpJump
+- App page: https://toucharcade.com/games/upjump
+
+<img src="site/public/assets/games/upjump/shot1.jpg" width="240" /> <img src="site/public/assets/games/upjump/shot2.jpg" width="240" />
+
+### Deezy
+- App page: https://toucharcade.com/games/deezy
+
+<img src="site/public/assets/games/deezy/shot1.jpg" width="240" /> <img src="site/public/assets/games/deezy/shot2.jpg" width="240" />
+
+## Deployment
+
+Planned: free static hosting (GitHub Pages / Cloudflare Pages / Netlify).
+Deployed only with explicit Guy “GO”.
+
